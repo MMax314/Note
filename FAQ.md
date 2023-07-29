@@ -1,3 +1,4 @@
+---
 **Скажи, как получить занчения поля по его имени?
 var reader = command.ExecuteReader();**
 
