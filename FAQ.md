@@ -6,6 +6,7 @@
 <!--/TOC-->
 
 ## Оформление markdown;
+* [Расширение для Visual Studio: Markdown Editor v2](https://github.com/MadsKristensen/MarkdownEditor2022)
 * [GitHub Flavored Markdown Spec](https://github.github.com/gfm/)
 ---
 
