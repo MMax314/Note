@@ -1,8 +1,3 @@
-#### Table of contents
-    + [Table of contents](#table-of-contents)
-- [[Скажи, как получить занчения поля по его имени? var reader = command.ExecuteReader();](asdf)](#-------------------------------------------------var-reader---commandexecutereader-----asdf-)
-<small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
-
 
 ## [Скажи, как получить занчения поля по его имени? var reader = command.ExecuteReader();](asdf)
 
