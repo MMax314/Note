@@ -2,7 +2,6 @@
 <!--TOC-->
   - [Оформление markdown;](#-markdown)
   - [Как получить занчения поля по его имени? var reader = command.ExecuteReader();](#-var-reader-command.executereader)
-  - [test](#test)
 <!--/TOC-->
 
 ## Оформление markdown;
@@ -48,6 +47,3 @@ string value = reader.GetString(columnIndex); // Используем сохра
 •  https://www.c-sharpcorner.com/article/datareader-in-C-Sharp
  
 ---
-## test
-asdf \
-asdf\
