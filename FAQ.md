@@ -1,5 +1,12 @@
+## Оглавление:
+<!--TOC-->
+  - [Оформление markdown;](#-markdown)
+  - [Как получить занчения поля по его имени? var reader = command.ExecuteReader();](#-var-reader-command.executereader)
+<!--/TOC-->
+
 ## Оформление markdown;
-[GitHub Flavored Markdown Spec](https://github.github.com/gfm/)
+* [GitHub Flavored Markdown Spec](https://github.github.com/gfm/)
+---
 
 ## Как получить занчения поля по его имени? var reader = command.ExecuteReader();
 
