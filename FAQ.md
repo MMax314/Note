@@ -1,3 +1,5 @@
+## Оформление markdown;
+[GitHub Flavored Markdown Spec](https://github.github.com/gfm/)
 
 ## Как получить занчения поля по его имени? var reader = command.ExecuteReader();
 
@@ -36,5 +38,4 @@ string value = reader.GetString(columnIndex); // Используем сохра
 •  https://stackoverflow.com/questions/8655965/how-to-get-data-by-sqldatareader-getvalue-by-column-name \
 •  https://www.c-sharpcorner.com/article/datareader-in-C-Sharp
  
-
----
+ ---
