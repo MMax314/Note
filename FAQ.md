@@ -23,10 +23,10 @@ using (var connection = new SqliteConnection(connectionString))
 
 	//Вариант 2 (2.1)
 	var table = (id: reader.GetOrdinal("id"), 
-	Name: reader.GetOrdinal("Name"),
-	Budget: reader.GetOrdinal("Budget"),
-	Year: reader.GetOrdinal("Year"),
-	Genre: reader.GetOrdinal("Genre"));
+				Name: reader.GetOrdinal("Name"),
+				Budget: reader.GetOrdinal("Budget"),
+				Year: reader.GetOrdinal("Year"),
+				Genre: reader.GetOrdinal("Genre"));
 
 	while (reader.Read())
 	{
