@@ -3,7 +3,7 @@
   - [Оформление markdown;](#-markdown)
   - [Как получить занчения поля по его имени? var reader = command.ExecuteReader();](#-var-reader-command.executereader)
   - [Автоинкремент SQLite](#-sqlite)
-  - [Разница между reader.GetOrdinal("id")](#-reader.getordinalid)
+  - [Разница между reader.GetOrdinal("id") и reader.GetOrdinal("id")](#-reader.getordinalid-reader.getordinalid)
 <!--/TOC-->
 
 ## Оформление markdown;
@@ -77,7 +77,7 @@ while (reader.Read())
 
 ---
 
-## Разница между reader.GetOrdinal("id")
+## Разница между reader.GetOrdinal("id") и reader.GetOrdinal("id")
 Разница между reader["id"] и reader.GetOrdinal("id") в том, что первый вариант использует индексатор, который внутри вызывает метод GetValue с индексом, полученным из метода GetOrdinal https://stackoverflow.com/questions/31742331/how-to-properly-read-data-from-sqldatareader-in-c. То есть, reader["id"] эквивалентен reader.GetValue(reader.GetOrdinal("id")). Второй вариант просто возвращает индекс колонки по ее имени, без получения значения.
 
 Если ты хочешь получить значение из reader по имени колонки, то ты можешь использовать любой из этих вариантов, но первый более краткий и читабельный. Однако, если ты хочешь повысить производительность, то ты можешь сохранить индекс колонки в переменную вне цикла и использовать его для получения значения: \ 
