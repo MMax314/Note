@@ -149,8 +149,8 @@ var id = reader.GetInt32(idIndex);
 
 **Пример:* \
 @content \
-Небо, вода \
+Небо, вода
 
-@mode Precise \
+@mode Precise
 
 ---
