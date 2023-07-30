@@ -6,6 +6,7 @@
 - [Разница между reader.GetOrdinal("id") и reader.GetOrdinal("id")](#разница-между-readergetordinalid-и-readergetordinalid)
 - [Генерация GUID в Visual Studio. Hot keys](#генерация-guid-в-visual-studio-hot-keys)
 - [Режимы Bing](#режимы-bing)
+- [Создание новой записи. PK ID.](#создание-новой-записи-pk-id)
 
 
 ## Оформление markdown;
@@ -152,5 +153,49 @@ var id = reader.GetInt32(idIndex);
 Небо, вода
 
 @mode Precise
+
+---
+## Создание новой записи. PK ID.
+**Вопрос:** Проект: *** \
+Файл создания Actors:
+1) /Actors/Create.cshtml
+2) /Actors/Create.cshtml.cs
+
+Вопрос: В проекте используется база данных SQLite version 3. Если в таблице используется PK Integer, то при создании не обязательно задавать значение полю ID, база сама его заполнит. Сейчас, при создании новой записи Actor выводится поле ввода для ID. Что нужно изменить, чтобы поле не выводилось, а заполнялось самой базой данных. \
+
+**Ответ:** Для того, чтобы скрыть поле ID при создании новой записи Actor, ты можешь использовать атрибут [HiddenInput] в модели Actor или в модели ActorViewModel, если ты используешь ее для передачи данных между представлением и контроллером. Этот атрибут позволяет сгенерировать скрытое поле <input type="hidden"> с помощью метода Html.HiddenFor() в представлении. Например:
+
+В модели:
+```cs
+public class Actor
+{
+[HiddenInput]
+public int ID { get; set; }
+public string Name { get; set; }
+// other properties
+}
+```
+В представлении:
+
+```html
+@model Actor
+
+<form method="post">
+@Html.HiddenFor(model => model.ID)
+@Html.LabelFor(model => model.Name)
+@Html.EditorFor(model => model.Name)
+<!-- other fields -->
+<input type="submit" value="Create" />
+</form>
+```
+Таким образом, ты сможешь скрыть поле ID от пользователя, но передать его значение в контроллер при отправке формы. База данных SQLite сама заполнит это поле при создании новой записи, если оно имеет тип Integer и является первичным ключом.
+
+Для более подробной информации по работе со скрытыми полями в ASP.NET Core Razor Pages, ты можешь посмотреть следующие ссылки:
+
+•  https://stackoverflow.com/questions/63208733/asp-net-core-with-razor-pages-bind-hidden-input \
+•  https://www.aspsnippets.com/Articles/ASPNet-Core-Razor-Pages-Hidden-Field-example.aspx \
+•  https://www.tutorialsteacher.com/mvc/htmlhelper-hidden-hiddenfor \
+
+Надеюсь, это поможет тебе решить проблему с полем ID. blush
 
 ---
