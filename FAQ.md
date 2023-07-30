@@ -11,7 +11,20 @@
 ---
 
 ## Как получить занчения поля по его имени? var reader = command.ExecuteReader();
-
+```cs
+using (var connection = new SqliteConnection(connectionString))
+{
+	connection.Open();
+	var command = connection.CreateCommand();
+	command.CommandText = "SELECT * FROM Films LIMIT 3;";
+	var reader = command.ExecuteReader();
+	while (reader.Read())
+	{
+		Console.WriteLine($"{reader.GetInt32(0)} {reader.GetString(1)} {reader.GetString(2)} {reader.GetString(3)}");
+	}
+}
+```
+**ОТВЕТ:**
 Если ты хочешь получить значение из SqlDataReader по имени столбца, ты можешь использовать индексатор, который принимает строку в качестве параметра. Например:
 
 ```cs
