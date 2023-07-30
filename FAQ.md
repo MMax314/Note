@@ -3,6 +3,7 @@
   - [Оформление markdown;](#-markdown)
   - [Как получить занчения поля по его имени? var reader = command.ExecuteReader();](#-var-reader-command.executereader)
   - [Автоинкремент SQLite](#-sqlite)
+  - [Разница между reader.GetOrdinal("id")](#-reader.getordinalid)
 <!--/TOC-->
 
 ## Оформление markdown;
@@ -92,4 +93,6 @@ while (reader.Read())
 Также, если ты знаешь тип данных в колонке, то ты можешь использовать специализированные методы, такие как GetInt32, GetString и т.д., которые делают проверку типа и приведение за тебя https://stackoverflow.com/questions/31742331/how-to-properly-read-data-from-sqldatareader-in-c https://stackoverflow.com/questions/45609498/exceldatareader-getordinal-method-in-net-core. \
 Например: 
 ```cs var id = reader.GetInt32(idIndex); ```
+
 ---
+1
