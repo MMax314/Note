@@ -80,7 +80,9 @@ while (reader.Read())
 ## Разница между reader.GetOrdinal("id")
 Разница между reader["id"] и reader.GetOrdinal("id") в том, что первый вариант использует индексатор, который внутри вызывает метод GetValue с индексом, полученным из метода GetOrdinal https://stackoverflow.com/questions/31742331/how-to-properly-read-data-from-sqldatareader-in-c. То есть, reader["id"] эквивалентен reader.GetValue(reader.GetOrdinal("id")). Второй вариант просто возвращает индекс колонки по ее имени, без получения значения.
 
-Если ты хочешь получить значение из reader по имени колонки, то ты можешь использовать любой из этих вариантов, но первый более краткий и читабельный. Однако, если ты хочешь повысить производительность, то ты можешь сохранить индекс колонки в переменную вне цикла и использовать его для получения значения https://stackoverflow.com/questions/31742331/how-to-properly-read-data-from-sqldatareader-in-c. Например:
+Если ты хочешь получить значение из reader по имени колонки, то ты можешь использовать любой из этих вариантов, но первый более краткий и читабельный. Однако, если ты хочешь повысить производительность, то ты можешь сохранить индекс колонки в переменную вне цикла и использовать его для получения значения: \ 
+https://stackoverflow.com/questions/31742331/how-to-properly-read-data-from-sqldatareader-in-c. \
+Например:
 ```cs
 var idIndex = reader.GetOrdinal("id");
 while (reader.Read())
@@ -90,9 +92,13 @@ while (reader.Read())
 }
 ```
 
-Также, если ты знаешь тип данных в колонке, то ты можешь использовать специализированные методы, такие как GetInt32, GetString и т.д., которые делают проверку типа и приведение за тебя https://stackoverflow.com/questions/31742331/how-to-properly-read-data-from-sqldatareader-in-c https://stackoverflow.com/questions/45609498/exceldatareader-getordinal-method-in-net-core. \
-Например: 
-```cs var id = reader.GetInt32(idIndex); ```
+Также, если ты знаешь тип данных в колонке, то ты можешь использовать специализированные методы, такие как GetInt32, GetString и т.д., которые делают проверку типа и приведение за тебя: \
+https://stackoverflow.com/questions/31742331/how-to-properly-read-data-from-sqldatareader-in-c \
+https://stackoverflow.com/questions/45609498/exceldatareader-getordinal-method-in-net-core. \
+Например:
+```cs
+var id = reader.GetInt32(idIndex);
+```
 
 ---
 1
