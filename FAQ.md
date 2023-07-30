@@ -33,7 +33,7 @@ using (var connection = new SqliteConnection(connectionString))
 		//Вариант 1
 		Console.WriteLine($"{reader.GetInt32(0)} {reader.GetString(1)} {reader.GetString(2)} {reader.GetString(3)}");
 
-		//Вариант 2 (2.1)
+		//Вариант 2 (2.2)
 		 Console.WriteLine($"{table.id} {table.Name} {table.Budget} {table.Year} {table.Genre}");
 
 		//Вариант 3
