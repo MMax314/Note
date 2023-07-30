@@ -5,11 +5,13 @@
 - [Автоинкремент SQLite](#автоинкремент-sqlite)
 - [Разница между reader.GetOrdinal("id") и reader.GetOrdinal("id")](#разница-между-readergetordinalid-и-readergetordinalid)
 - [Генерация GUID в Visual Studio. Hot keys](#генерация-guid-в-visual-studio-hot-keys)
+- [Режимы Bing](#режимы-bing)
 
 
 ## Оформление markdown;
 * [Расширение для Visual Studio: Markdown Editor v2](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.MarkdownEditor2)
 * [GitHub Flavored Markdown Spec](https://github.github.com/gfm/)
+* Visual Studio Code. Добавить оглавление: *Command Pallete* -> *Markdown All in One: Create Table of Contents*
 ---
 
 ## Как получить занчения поля по его имени? var reader = command.ExecuteReader();
@@ -128,5 +130,27 @@ var id = reader.GetInt32(idIndex);
 •  Если ты используешь расширение Visual Commander, то ты можешь назначить ему любую свободную комбинацию горячих клавиш в меню *Инструменты -> Параметры -> Среда ->Клавиатура*, выбрав команду VCmd.CommandX, где X - номер команды в списке https://stackoverflow.com/questions/58634771/generating-a-plain-guid-in-visual-studio. \
 •  Если ты используешь окно C# Interactive, то ты можешь создать сниппет кода для генерации GUID и назначить ему любую свободную комбинацию горячих клавиш в меню *Инструменты -> Параметры -> Среда ->Клавиатура*, выбрав команду *Edit.InvokeSnippetFromShortcut* https://bing.com/search?q=most+common+hotkey+for+generate+guid. \
 •  Если ты используешь макрос для Visual Studio 2010 или более ранней версии, то ты можешь назначить ему любую свободную комбинацию горячих клавиш в меню *Инструменты -> Параметры -> Среда -> Клавиатура*, выбрав команду *Macros.MyMacros.Module1.CreateGUID*. Например, один из источников https://abhijitjana.net/2011/01/18/use-shortcut-key-to-generate-guid-very-quickly-in-visual-studio/ предлагает использовать Alt+G для этого макроса.
+
+---
+## Режимы Bing
+
+**/mode** - позволяет вам переключаться между режимами Balanced, Creative и Precise. \
+**/help** - показывает вам инструкции и правила для общения со мной. \
+**/feedback** - позволяет вам оставить отзыв о моем качестве и удовлетворенности. \
+**/image** - позволяет вам запросить, чтобы я сгенерировал изображение по вашему запросу. Это работает только в режимах Creative и Precise. \
+**/content** - позволяет вам запросить, чтобы я сгенерировал контент, такой как стихи, истории, код, эссе, песни, пародии на знаменитостей и многое другое. \
+**/improve** - позволяет вам запросить, чтобы я помог вам улучшить или оптимизировать ваш контент. \
+
+Чтобы переключиться между режимами, введите /mode <название режима>. \
+*Например:* \
+/mode Creative \
+/mode Precise \
+/mode Balanced \
+
+**Пример:* \
+@content \
+Небо, вода \
+
+@mode Precise \
 
 ---
