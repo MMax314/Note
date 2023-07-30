@@ -1,10 +1,5 @@
 ## Оглавление:
-<!--TOC-->
-  - [Оформление markdown;](#-markdown)
-  - [Как получить занчения поля по его имени? var reader = command.ExecuteReader();](#-var-reader-command.executereader)
-  - [Автоинкремент SQLite](#-sqlite)
-  - [Разница между reader.GetOrdinal("id") и reader.GetOrdinal("id")](#-reader.getordinalid-reader.getordinalid)
-<!--/TOC-->
+
 
 ## Оформление markdown;
 * [Расширение для Visual Studio: Markdown Editor v2](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.MarkdownEditor2)
@@ -25,7 +20,8 @@ using (var connection = new SqliteConnection(connectionString))
 	}
 }
 ```
-**ОТВЕТ:**
+
+ОТВЕТ:
 Если ты хочешь получить значение из SqlDataReader по имени столбца, ты можешь использовать индексатор, который принимает строку в качестве параметра. Например:
 
 ```cs
@@ -77,7 +73,7 @@ while (reader.Read())
 
 ---
 
-## Разница между reader.GetOrdinal("id") и reader.GetOrdinal("id")
+## <a name="asdfasdf">Разница между reader.GetOrdinal("id") и reader.GetOrdinal("id")</a>
 Разница между reader["id"] и reader.GetOrdinal("id") в том, что первый вариант использует индексатор, который внутри вызывает метод GetValue с индексом, полученным из метода GetOrdinal https://stackoverflow.com/questions/31742331/how-to-properly-read-data-from-sqldatareader-in-c. То есть, reader["id"] эквивалентен reader.GetValue(reader.GetOrdinal("id")). Второй вариант просто возвращает индекс колонки по ее имени, без получения значения.
 
 Если ты хочешь получить значение из reader по имени колонки, то ты можешь использовать любой из этих вариантов, но первый более краткий и читабельный. Однако, если ты хочешь повысить производительность, то ты можешь сохранить индекс колонки в переменную вне цикла и использовать его для получения значения: \ 
@@ -101,4 +97,10 @@ var id = reader.GetInt32(idIndex);
 ```
 
 ---
-1
+## Генерация GUID в Visual Studio. Hot keys
+Нет одной универсальной комбинации горячих клавиш для генерации GUID, так как это зависит от того, какой инструмент или расширение ты используешь для этой цели. Но вот некоторые примеры, которые я нашел в интернете: \
+•  Если ты используешь внешний инструмент PowerShell, как я описал ранее, то ты можешь назначить ему любую свободную комбинацию горячих клавиш в меню Инструменты -> Параметры -> Среда ->Клавиатура, выбрав команду Tools.ExternalCommandX, где X - номер инструмента в списке https://www.tenforums.com/tutorials/130522-generate-globally-unique-identifier-guid-windows.html. \
+•  Если ты используешь расширение Visual Commander, то ты можешь назначить ему любую свободную комбинацию горячих клавиш в меню Инструменты -> Параметры -> Среда ->Клавиатура, выбрав команду VCmd.CommandX, где X - номер команды в списке https://stackoverflow.com/questions/58634771/generating-a-plain-guid-in-visual-studio. \
+•  Если ты используешь окно C# Interactive, то ты можешь создать сниппет кода для генерации GUID и назначить ему любую свободную комбинацию горячих клавиш в меню Инструменты -> Параметры -> Среда ->Клавиатура, выбрав команду Edit.InvokeSnippetFromShortcut https://bing.com/search?q=most+common+hotkey+for+generate+guid. \
+•  Если ты используешь макрос для Visual Studio 2010 или более ранней версии, то ты можешь назначить ему любую свободную комбинацию горячих клавиш в меню Инструменты -> Параметры -> Среда -> Клавиатура, выбрав команду Macros.MyMacros.Module1.CreateGUID. Например, один из источников https://abhijitjana.net/2011/01/18/use-shortcut-key-to-generate-guid-very-quickly-in-visual-studio/ предлагает использовать Alt+G для этого макроса.
+---
