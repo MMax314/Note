@@ -20,9 +20,27 @@ using (var connection = new SqliteConnection(connectionString))
 	var command = connection.CreateCommand();
 	command.CommandText = "SELECT * FROM Films LIMIT 3;";
 	var reader = command.ExecuteReader();
+
+	//Вариант 2 (2.1)
+	var table = (id: reader.GetOrdinal("id"), 
+	Name: reader.GetOrdinal("Name"),
+	Budget: reader.GetOrdinal("Budget"),
+	Year: reader.GetOrdinal("Year"),
+	Genre: reader.GetOrdinal("Genre"));
+
 	while (reader.Read())
 	{
+		//Вариант 1
 		Console.WriteLine($"{reader.GetInt32(0)} {reader.GetString(1)} {reader.GetString(2)} {reader.GetString(3)}");
+
+		//Вариант 2 (2.1)
+		 Console.WriteLine($"{table.id} {table.Name} {table.Budget} {table.Year} {table.Genre}");
+
+		//Вариант 3
+		// Создаем анонимный тип с полями из reader
+		var film = new { id = reader["id"], Name = reader["Name"], Budget = reader["Budget"], Year = reader["Year"], Genre = reader["Genre"] };
+		// Используем интерполированную строку для вывода
+		Console.WriteLine($"{film.id} {film.Name} {film.Budget} {film.Year} {film.Genre}");		
 	}
 }
 ```
@@ -106,9 +124,9 @@ var id = reader.GetInt32(idIndex);
 ## Генерация GUID в Visual Studio. Hot keys
 
 Нет одной универсальной комбинации горячих клавиш для генерации GUID, так как это зависит от того, какой инструмент или расширение ты используешь для этой цели. Но вот некоторые примеры, которые я нашел в интернете: \
-•  Если ты используешь внешний инструмент PowerShell, как я описал ранее, то ты можешь назначить ему любую свободную комбинацию горячих клавиш в меню Инструменты -> Параметры -> Среда ->Клавиатура, выбрав команду Tools.ExternalCommandX, где X - номер инструмента в списке https://www.tenforums.com/tutorials/130522-generate-globally-unique-identifier-guid-windows.html. \
-•  Если ты используешь расширение Visual Commander, то ты можешь назначить ему любую свободную комбинацию горячих клавиш в меню Инструменты -> Параметры -> Среда ->Клавиатура, выбрав команду VCmd.CommandX, где X - номер команды в списке https://stackoverflow.com/questions/58634771/generating-a-plain-guid-in-visual-studio. \
-•  Если ты используешь окно C# Interactive, то ты можешь создать сниппет кода для генерации GUID и назначить ему любую свободную комбинацию горячих клавиш в меню Инструменты -> Параметры -> Среда ->Клавиатура, выбрав команду Edit.InvokeSnippetFromShortcut https://bing.com/search?q=most+common+hotkey+for+generate+guid. \
-•  Если ты используешь макрос для Visual Studio 2010 или более ранней версии, то ты можешь назначить ему любую свободную комбинацию горячих клавиш в меню Инструменты -> Параметры -> Среда -> Клавиатура, выбрав команду Macros.MyMacros.Module1.CreateGUID. Например, один из источников https://abhijitjana.net/2011/01/18/use-shortcut-key-to-generate-guid-very-quickly-in-visual-studio/ предлагает использовать Alt+G для этого макроса.
+•  Если ты используешь внешний инструмент PowerShell, как я описал ранее, то ты можешь назначить ему любую свободную комбинацию горячих клавиш в меню *Инструменты -> Параметры -> Среда ->Клавиатура*, выбрав команду *Tools.ExternalCommandX*, где X - номер инструмента в списке https://www.tenforums.com/tutorials/130522-generate-globally-unique-identifier-guid-windows.html. \
+•  Если ты используешь расширение Visual Commander, то ты можешь назначить ему любую свободную комбинацию горячих клавиш в меню *Инструменты -> Параметры -> Среда ->Клавиатура*, выбрав команду VCmd.CommandX, где X - номер команды в списке https://stackoverflow.com/questions/58634771/generating-a-plain-guid-in-visual-studio. \
+•  Если ты используешь окно C# Interactive, то ты можешь создать сниппет кода для генерации GUID и назначить ему любую свободную комбинацию горячих клавиш в меню *Инструменты -> Параметры -> Среда ->Клавиатура*, выбрав команду *Edit.InvokeSnippetFromShortcut* https://bing.com/search?q=most+common+hotkey+for+generate+guid. \
+•  Если ты используешь макрос для Visual Studio 2010 или более ранней версии, то ты можешь назначить ему любую свободную комбинацию горячих клавиш в меню *Инструменты -> Параметры -> Среда -> Клавиатура*, выбрав команду *Macros.MyMacros.Module1.CreateGUID*. Например, один из источников https://abhijitjana.net/2011/01/18/use-shortcut-key-to-generate-guid-very-quickly-in-visual-studio/ предлагает использовать Alt+G для этого макроса.
 
 ---
