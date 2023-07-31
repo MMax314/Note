@@ -8,6 +8,7 @@
 - [Режимы Bing](#режимы-bing)
 - [Создание новой записи. PK ID.](#создание-новой-записи-pk-id)
 - [Вывод SQL запросов в консоль DbContext.cs](#вывод-sql-запросов-в-консоль-dbcontextcs)
+- [Публикация в Telegram](#публикация-в-telegram)
 
 
 ## Оформление markdown;
@@ -210,3 +211,52 @@ public string Name { get; set; }
 ```
 
 ---
+
+## Публикация в Telegram
+**ВОПРОСЫ:**
+1) Что нужно для того, чтобы приложение самостоятельно публиковало сообщения в своем канале Telegram?
+2) Есть ли пример программы на C#, которая автоматически отправляет сообщения в Telegram?
+
+**ОТВЕТ:** \
+Для того, чтобы приложение самостоятельно публиковало сообщения в своем канале Telegram, вам нужно сделать следующее:
+
+•  Создать бота в Telegram с помощью специального бота @BotFather и получить его API токен https://stackoverflow.com/questions/31271355/how-to-use-telegram-api-in-c-sharp-to-send-a-message https://stackoverflow.com/questions/29363995/telegram-c-sharp-example-send-message.
+
+•  Добавить бота в свой канал Telegram в качестве администратора https://stackoverflow.com/questions/31271355/how-to-use-telegram-api-in-c-sharp-to-send-a-message.
+
+•  Использовать библиотеку Telegram.Bot для C#, которая позволяет работать с Telegram Bot API https://stackoverflow.com/questions/29363995/telegram-c-sharp-example-send-message https://www.codeproject.com/Tips/5303407/How-to-Easily-Create-Telegram-Bot-using-Csharp https://whatsmate.github.io/2022-06-16-send-telegram-message-csharp/.
+
+•  Использовать метод SendTextMessageAsync или другие методы для отправки сообщений в свой канал по его имени или идентификатору https://stackoverflow.com/questions/29363995/telegram-c-sharp-example-send-message https://www.codeproject.com/Tips/5303407/How-to-Easily-Create-Telegram-Bot-using-Csharp https://whatsmate.github.io/2022-06-16-send-telegram-message-csharp/.
+
+Пример программы на C#, которая автоматически отправляет сообщения в Telegram, может выглядеть так:
+```cs
+using System;
+using System.Threading.Tasks;
+using Telegram.Bot;
+
+namespace TelegramBotExample
+{
+	class Program
+	{
+		static async Task Main(string[] args)
+		{
+			// Создаем бота с API токеном
+			var bot = new TelegramBotClient("your api token here");
+
+			// Проверяем, что бот работает
+			var me = await bot.GetMeAsync();
+			Console.WriteLine($"Hello, I am {me.FirstName}.");
+
+			// Отправляем сообщение в канал по его имени
+			await bot.SendTextMessageAsync("@channelname", "Hello, this is a test message.");
+
+			// Отправляем сообщение в канал по его идентификатору
+			await bot.SendTextMessageAsync(-1001234567890, "Hello, this is another test message.");
+		}
+	}
+}
+```
+
+---
+
+
