@@ -7,6 +7,7 @@
 - [Генерация GUID в Visual Studio. Hot keys](#генерация-guid-в-visual-studio-hot-keys)
 - [Режимы Bing](#режимы-bing)
 - [Создание новой записи. PK ID.](#создание-новой-записи-pk-id)
+- [Вывод SQL запросов в консоль DbContext.cs](#вывод-sql-запросов-в-консоль-dbcontextcs)
 
 
 ## Оформление markdown;
@@ -197,5 +198,15 @@ public string Name { get; set; }
 •  https://www.tutorialsteacher.com/mvc/htmlhelper-hidden-hiddenfor \
 
 Надеюсь, это поможет тебе решить проблему с полем ID. blush
+
+---
+
+## Вывод SQL запросов в консоль DbContext.cs
+
+```cs
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        => optionsBuilder.UseSqlite(Program.connectionString)
+           .LogTo(Console.WriteLine);//Вывод SQL запросов в консоль
+```
 
 ---
