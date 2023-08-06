@@ -10,6 +10,9 @@
 - [Вывод SQL запросов в консоль DbContext.cs](#вывод-sql-запросов-в-консоль-dbcontextcs)
 - [Публикация в Telegram](#публикация-в-telegram)
 - [Если базе данных SQLite поле PK имеет тип INTEGER, то какой тип должно быть у свойства Id?](#если-базе-данных-sqlite-поле-pk-имеет-тип-integer-то-какой-тип-должно-быть-у-свойства-id)
+- [Как можно ограничить число знаков после запятой? \<input asp-for="value" class="form-control" type=". . . (Razor Pages)](#как-можно-ограничить-число-знаков-после-запятой-input-asp-forvalue-classform-control-type---razor-pages)
+- [Ввод даты-времени, даты Razor Pages](#ввод-даты-времени-даты-razor-pages)
+- [Получить список установленных версий .NET с помощью команды](#получить-список-установленных-версий-net-с-помощью-команды)
 
 
 ## Оформление markdown;
@@ -264,5 +267,47 @@ namespace TelegramBotExample
 **Ответ:** long \
 **Вопрос:** Почему long, а не int? \
 **Ответ:** Потому что в SQLite тип INTEGER имеет диапазон значений от -9223372036854775808 до +9223372036854775807 \
+
+---
+
+ ## Как можно ограничить число знаков после запятой? <input asp-for="value" class="form-control" type=". . . (Razor Pages)
+
+Согласно документации Microsoft https://stackoverflow.com/questions/14727979/how-to-allow-only-numbers-in-textbox-in-mvc4-razor, вы можете использовать атрибут asp-format для задания формата для ввода чисел в текстовое поле. Например, asp-format="{0:F2}" ограничит число двумя знаками после запятой. Вы также можете использовать атрибут type для задания типа ввода, например type="number" для ввода только чисел https://www.learnrazorpages.com/razor-pages/tag-helpers/input-tag-helper. \
+
+Например:
+```html
+<input asp-for="value" class="form-control" type="number" asp-format="{0:F2}" />
+```
+Этот код сгенерирует следующий HTML:
+```html
+<input class="form-control" type="number" data-val="true" id="value" name="value" value="" />
+```
+
+---
+## Ввод даты-времени, даты Razor Pages
+
+<input asp-for="Actor.YearBirth" class="form-control" type="date" asp-format="{0:yyyy-MM-dd}" />
+
+```html
+<div class="form-group">
+	<label asp-for="Actor.YearBirth" class="control-label"></label>
+	<input asp-for="Actor.YearBirth" class="form-control" type="date" asp-format="{0:yyyy-MM-dd}" />
+	<span asp-validation-for="Actor.YearBirth" class="text-danger"></span>
+</div> 
+```
+
+```html
+<!-- Дата -->
+<input asp-for="Actor.YearBirth" class="form-control" type="date" asp-format="{0:yyyy-MM-dd}" />
+<!-- Дата-время -->
+<input asp-for="Actor.YearBirth" class="form-control" type="datetime-local" />
+```
+
+---
+
+## Получить список установленных версий .NET с помощью команды
+
+dotnet --list-sdks
+https://learn.microsoft.com/en-us/dotnet/core/tools/sdk-errors/netsdk1045
 
 ---
