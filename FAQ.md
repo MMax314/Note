@@ -13,6 +13,7 @@
 - [Как можно ограничить число знаков после запятой? \<input asp-for="value" class="form-control" type=". . . (Razor Pages)](#как-можно-ограничить-число-знаков-после-запятой-input-asp-forvalue-classform-control-type---razor-pages)
 - [Ввод даты-времени, даты Razor Pages](#ввод-даты-времени-даты-razor-pages)
 - [Получить список установленных версий .NET с помощью команды](#получить-список-установленных-версий-net-с-помощью-команды)
+- [Файл настроек приложения](#файл-настроек-приложения)
 
 
 ## Оформление markdown;
@@ -311,3 +312,26 @@ dotnet --list-sdks
 https://learn.microsoft.com/en-us/dotnet/core/tools/sdk-errors/netsdk1045
 
 ---
+
+## Файл настроек приложения
+ВОПРОС: \
+Создал файл appsettings.json для хранения настроек файла. Какое значение нужно установить свойству Build Action ? \
+
+ОТВЕТ: \
+Здравствуйте, это Bing. Я рад, что вы интересуетесь созданием файла appsettings.json для хранения настроек вашего приложения. Это хороший способ для управления конфигурацией вашего приложения в разных средах и сценариях.
+
+Для того, чтобы файл appsettings.json был корректно обработан при сборке и публикации вашего приложения, вам нужно установить свойство **Build Action** на значение **Content**. Это означает, что файл appsettings.json будет включен в выходной пакет вашего приложения и скопирован в целевую директорию https://stackoverflow.com/questions/62087066/net-core-appsettings-json-best-practices-override-dev-settings-or-vice-versa https://stackoverflow.com/questions/70280264/maui-what-build-action-for-appsettings-json-and-how-to-access-the-file-on-andro.
+
+Если вы установите свойство **Build Action** на значение **None**, то файл appsettings.json не будет включен в выходной пакет вашего приложения и не будет скопирован в целевую директорию https://learn.microsoft.com/en-us/answers/questions/953861/maui-appsettings-json-not-copying-to-device. Это может привести к тому, что ваше приложение не сможет прочитать настройки из файла appsettings.json и работать неправильно.
+
+Если вы установите свойство **Build Action** на значение **Embedded Resource**, то файл appsettings.json будет включен в выходной пакет вашего приложения, но не будет скопирован в целевую директорию. Вместо этого он будет встроен в сборку вашего приложения как ресурс https://slothycode.com/output-configuration-appsettings-json-on-build-publish/. Это может быть полезно, если вы хотите защитить свои настройки от изменений или просмотра, но это также может усложнить доступ к ним из вашего кода.
+
+Я надеюсь, что эта информация была полезна для вас. Если вы хотите узнать больше о файле appsettings.json и его использовании, вы можете посетить следующие ссылки:
+
+•  Configuration in ASP.NET Core \
+•  Copy configuration appsettings.json on build \
+•  appsettings.json not getting copied to build package \
+•  How to load app configuration from appsettings.json in MAUI startup \
+
+---
+
