@@ -14,6 +14,7 @@
 - [Ввод даты-времени, даты Razor Pages](#ввод-даты-времени-даты-razor-pages)
 - [Получить список установленных версий .NET с помощью команды](#получить-список-установленных-версий-net-с-помощью-команды)
 - [Файл настроек приложения](#файл-настроек-приложения)
+- [Чтение JSON](#чтение-json)
 
 
 ## Оформление markdown;
@@ -335,3 +336,74 @@ https://learn.microsoft.com/en-us/dotnet/core/tools/sdk-errors/netsdk1045
 
 ---
 
+## Чтение JSON
+1) JSON:
+```JSON
+{
+  "downloadPageCount": 3,
+  "downloadPagePathSave": "c:\\temp\\"
+}
+```
+1) using Newtonsoft.Json.Linq;
+ ```cs
+using Newtonsoft.Json.Linq;
+namespace NS01
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            // Read JSON data as a string
+            string json = File.ReadAllText("appsettings.json");
+
+            // Parse JSON data using JObject.Parse
+            JObject jObject = JObject.Parse(json);
+
+            // Access values from parsed JSON
+            int downloadPageCount = (int)jObject["DownloadPageCount"];
+            string downloadPagePathSave = (string)jObject["DownloadPagePathSave"];
+		}
+	}
+}
+ ```
+
+```cs
+using System;
+using System.IO;
+using System.Text.Json;
+
+namespace NS01
+{
+    public class AppSettings
+    {
+        public int DownloadPageCount { get; set; }
+        public string DownloadPagePathSave { get; set; }
+    }
+
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            // Read JSON data from file
+            string json = File.ReadAllText("appsettings.json");
+
+            // Deserialize JSON data into AppSettings object
+            AppSettings appSettings = JsonSerializer.Deserialize<AppSettings>(json);
+
+            // Access properties of AppSettings object
+            int downloadPageCount = appSettings.DownloadPageCount;
+            string downloadPagePathSave = appSettings.DownloadPagePathSave;
+
+            // Do something with the values
+            Console.WriteLine(downloadPageCount);
+            Console.WriteLine(downloadPagePathSave);
+        }
+    }
+}
+```
+
+---
+
+
+
+	
