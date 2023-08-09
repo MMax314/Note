@@ -15,6 +15,7 @@
 - [Получить список установленных версий .NET с помощью команды](#получить-список-установленных-версий-net-с-помощью-команды)
 - [Файл настроек приложения](#файл-настроек-приложения)
 - [Чтение JSON](#чтение-json)
+- [Статический конструктор](#статический-конструктор)
 
 
 ## Оформление markdown;
@@ -464,6 +465,55 @@ downloadPagePathSave = appSettings.downloadPagePathSave;
 
 ---
 
+## Статический конструктор
+```cs
+namespace Class_Static
+{
+    class Test
+    {
+        public int publicA = 1;
 
+        public static int publicStaticA = 1;
+        static Test()
+        {
+            Console.WriteLine("Call: static Test()");
+            publicStaticA += 1;
+        }
+        public Test()
+        {            
+            Console.WriteLine("Call: public Test()");
+            publicA += 1;
+        }
+    }
+    internal class Program
+    {
+        //Возможные варинты объявления
+        public static Test? publicStaticTest00;
+        public static Test  publicStaticTest01 = new Test();
+        //Предупреждение: CS8618 - Non-nullable variable must contain a non-null value when exiting constructor. Consider declaring it as nullable.
+        //https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/nullable-warnings?f1url=%3FappId%3Droslyn%26k%3Dk(CS8618)#nonnullable-reference-not-initialized
+        //Но, у нас есть статический конструктор, который инициализирует переменную
+        public static Test publicStaticTest02;
 
-	
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Hello, World!");
+
+            //Вызов статического конструктора будет только один раз
+            int i0 = Test.publicStaticA++;
+            //Тут вызова статического конструктора не будет
+            int i1 = Test.publicStaticA++;
+            Console.WriteLine($"Test.staticA.ToString() = {i0}");
+            Console.WriteLine($"Test.staticA.ToString() = {i1}");
+            
+            //Конструктор вызывается при создании объекта будет каждый раз
+            Test tst0 = new Test();
+            Test tst1 = new Test();
+            Console.WriteLine($"tst0 = {tst0.publicA}");
+            Console.WriteLine($"tst1 = {tst1.publicA}");
+        }
+    }
+}
+```
+
+---
