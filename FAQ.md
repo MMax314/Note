@@ -17,7 +17,7 @@
 - [Чтение JSON](#чтение-json)
 - [Статический конструктор](#статический-конструктор)
 - [Creating a Visual Studio Offline Installer](#creating-a-visual-studio-offline-installer)
-- [](#)
+- [scaffold-DbContext](#scaffold-dbcontext)
 
 
 ## Оформление markdown;
@@ -550,7 +550,7 @@ In a following post, I’m going to add more information about how the process c
 
 ---
 
-## 
+## scaffold-DbContext
 **1.1) ВОПРОС:** C#. Дай подробные объяснения этой строке генерации классов на основании базы данных:
 *scaffold-DbContext "Строка подключения" Microsoft.EntityFrameworkCore.SqlServer -ContextDir Data -OutputDir Models\Generated -DataAnnotation -ContextNamespace ContosoPissa.Data -Namespace ContosoPizza.Models*
 
