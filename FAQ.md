@@ -16,6 +16,7 @@
 - [Файл настроек приложения](#файл-настроек-приложения)
 - [Чтение JSON](#чтение-json)
 - [Статический конструктор](#статический-конструктор)
+- [Creating a Visual Studio Offline Installer](#creating-a-visual-studio-offline-installer)
 
 
 ## Оформление markdown;
@@ -515,5 +516,35 @@ namespace Class_Static
     }
 }
 ```
+
+---
+## Creating a Visual Studio Offline Installer
+Источник: https://trailheadtechnology.com/creating-a-visual-studio-offline-installer/
+
+First, we need to get the installer from the [download page](https://visualstudio.microsoft.com/vs/preview/#download-preview) and store it in a local folder. I will use c:\VSOffline
+
+After that, we need to open a command window in the folder where the installer was downloaded and then run the following instruction, which will start the slow download process.
+
+```bash
+VisualStudioSetup.exe --layout C:\VSOffline --lang en-US --add Microsoft.VisualStudio.Workload.NetCrossPlat --add Microsoft.VisualStudio.Workload.Universal --includeRecommended --includeOptional
+```
+
+Description of the parameters: \
+**–layout** is the destination folder \
+**–lang** the language to download, available values are specified in the BCP 47 column in the following link \
+**–includeRecommended** & **–includeOptional** will make sure that all the needed files will be included \
+**–add** used to include all the workflows that we need. In my case, I’m interested in cross-platform development, but you can see the available flows here \
+
+**Update our installer** \
+If we already created the installer, we can update to the latest version using the same call used to create our initial version.
+
+**Install Visual Studio** \
+In the same command line window used to do the download, we can use the following command.
+```bash
+VisualStudioSetup.**exe** --passive --norestart --includeOptional
+```
+This will start the installation, as shown in the following screenshot. The files are not downloaded again. The installer is only checking that they are available. \
+If we open the GUI from the installer, we will see that the selected workflows were installed. \
+In a following post, I’m going to add more information about how the process can be further automated and how it can be used with Windows Sandbox (in Spanish) to create temporary clean development environments. \
 
 ---

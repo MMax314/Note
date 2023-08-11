@@ -1,0 +1,36 @@
+- - -
+**Оригинал страницы: https://learn.microsoft.com/ru-ru/aspnet/core/tutorials/razor-pages/?view=aspnetcore-8.0**
+- - -
+
+Оглавление
+
+Учебник. Создание веб-приложения Razor Pages с помощью ASP.NET Core
+===================================================================
+
+* 05/31/2023
+
+В этой статье
+-------------
+
+В этой серии руководств приводятся основные сведения о создании веб-приложения Razor Pages.
+
+Дополнительные сведения, предназначенные для разработчиков, которые знакомы с контроллерами и представлениями, см. в статье [Введение в Razor Pages в ASP.NET Core](../../razor-pages/?view=aspnetcore-8.0).
+
+Если вы новичок в разработке на ASP.NET Core и не знаете, какое решение для пользовательского веб-интерфейса подойдет вам, см. статью [Выбор пользовательского интерфейса ASP.NET Core](../choose-web-ui?view=aspnetcore-8.0).
+
+В серию входят следующие руководства:
+
+1.  [Создание веб-приложения Razor Pages](razor-pages-start?view=aspnetcore-8.0)
+2.  [Добавление модели в приложение Razor Pages](model?view=aspnetcore-8.0)
+3.  [Формирование шаблона (создание) страницы Razor Pages](page?view=aspnetcore-8.0)
+4.  [Работа с базой данных](sql?view=aspnetcore-8.0)
+5.  [Обновление Razor Pages](da1?view=aspnetcore-8.0)
+6.  [Добавление поиска](search?view=aspnetcore-8.0)
+7.  [Добавление нового поля](new-field?view=aspnetcore-8.0)
+8.  [Добавление проверки](validation?view=aspnetcore-8.0)
+
+В итоге вы получите приложение, которое позволяет отображать сведения о базе данных фильмов и управлять ею.
+
+![Пример страницы примера приложения](https://learn.microsoft.com/ru-ru/aspnet/core/tutorials/razor-pages/index/_static/sample-page.png?view=aspnetcore-8.0)
+
+* * *
