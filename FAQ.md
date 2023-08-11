@@ -1,29 +1,51 @@
 ## Оглавление:
 - [Оглавление:](#оглавление)
 - [Оформление markdown;](#оформление-markdown)
+- [END:#](#end)
 - [Как получить занчения поля по его имени? var reader = command.ExecuteReader();](#как-получить-занчения-поля-по-его-имени-var-reader--commandexecutereader)
+- [END:#](#end-1)
 - [Автоинкремент SQLite](#автоинкремент-sqlite)
+- [END:#](#end-2)
 - [Разница между reader.GetOrdinal("id") и reader.GetOrdinal("id")](#разница-между-readergetordinalid-и-readergetordinalid)
+- [END:#](#end-3)
 - [Генерация GUID в Visual Studio. Hot keys](#генерация-guid-в-visual-studio-hot-keys)
+- [END:#](#end-4)
 - [Режимы Bing](#режимы-bing)
+- [END:#](#end-5)
 - [Создание новой записи. PK ID.](#создание-новой-записи-pk-id)
+- [END:#](#end-6)
 - [Вывод SQL запросов в консоль DbContext.cs](#вывод-sql-запросов-в-консоль-dbcontextcs)
+- [END:#](#end-7)
 - [Публикация в Telegram](#публикация-в-telegram)
+- [END:#](#end-8)
 - [Если базе данных SQLite поле PK имеет тип INTEGER, то какой тип должно быть у свойства Id?](#если-базе-данных-sqlite-поле-pk-имеет-тип-integer-то-какой-тип-должно-быть-у-свойства-id)
+- [END:#](#end-9)
 - [Как можно ограничить число знаков после запятой? \<input asp-for="value" class="form-control" type=". . . (Razor Pages)](#как-можно-ограничить-число-знаков-после-запятой-input-asp-forvalue-classform-control-type---razor-pages)
+- [END:#](#end-10)
 - [Ввод даты-времени, даты Razor Pages](#ввод-даты-времени-даты-razor-pages)
+- [END:#](#end-11)
 - [Получить список установленных версий .NET с помощью команды](#получить-список-установленных-версий-net-с-помощью-команды)
+- [END:#](#end-12)
 - [Файл настроек приложения](#файл-настроек-приложения)
+- [END:#](#end-13)
 - [Чтение JSON](#чтение-json)
+- [END:#](#end-14)
 - [Статический конструктор](#статический-конструктор)
+- [END:#](#end-15)
 - [Creating a Visual Studio Offline Installer](#creating-a-visual-studio-offline-installer)
+- [END:#](#end-16)
 - [scaffold-DbContext](#scaffold-dbcontext)
+- [END:#](#end-17)
+- [END:#](#end-18)
+- [EF Core: Будет ли с ключем -Data Annotations по умолчанию каскадное удаление работать не будет?](#ef-core-будет-ли-с-ключем--data-annotations-по-умолчанию-каскадное-удаление-работать-не-будет)
+- [END:#](#end-19)
 
 
 ## Оформление markdown;
 * [Расширение для Visual Studio: Markdown Editor v2](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.MarkdownEditor2)
 * [GitHub Flavored Markdown Spec](https://github.github.com/gfm/)
 * Visual Studio Code. Добавить оглавление: *Command Pallete* -> *Markdown All in One: Create Table of Contents*
+[END]:#
 ---
 
 ## Как получить занчения поля по его имени? var reader = command.ExecuteReader();
@@ -95,6 +117,7 @@ while (reader.Read())
 •  https://stackoverflow.com/questions/8655965/how-to-get-data-by-sqldatareader-getvalue-by-column-name \
 •  https://www.c-sharpcorner.com/article/datareader-in-C-Sharp
  
+[END]:#
 ---
 ## Автоинкремент SQLite
 
@@ -109,6 +132,7 @@ while (reader.Read())
 
 [Источник](https://www.sqlite.org/autoinc.html)
 
+[END]:#
 ---
 
 ## Разница между reader.GetOrdinal("id") и reader.GetOrdinal("id")
@@ -134,6 +158,7 @@ https://stackoverflow.com/questions/45609498/exceldatareader-getordinal-method-i
 var id = reader.GetInt32(idIndex);
 ```
 
+[END]:#
 ---
 ## Генерация GUID в Visual Studio. Hot keys
 
@@ -143,6 +168,7 @@ var id = reader.GetInt32(idIndex);
 •  Если ты используешь окно C# Interactive, то ты можешь создать сниппет кода для генерации GUID и назначить ему любую свободную комбинацию горячих клавиш в меню *Инструменты -> Параметры -> Среда ->Клавиатура*, выбрав команду *Edit.InvokeSnippetFromShortcut* https://bing.com/search?q=most+common+hotkey+for+generate+guid. \
 •  Если ты используешь макрос для Visual Studio 2010 или более ранней версии, то ты можешь назначить ему любую свободную комбинацию горячих клавиш в меню *Инструменты -> Параметры -> Среда -> Клавиатура*, выбрав команду *Macros.MyMacros.Module1.CreateGUID*. Например, один из источников https://abhijitjana.net/2011/01/18/use-shortcut-key-to-generate-guid-very-quickly-in-visual-studio/ предлагает использовать Alt+G для этого макроса.
 
+[END]:#
 ---
 ## Режимы Bing
 
@@ -165,6 +191,7 @@ var id = reader.GetInt32(idIndex);
 
 @mode Precise
 
+[END]:#
 ---
 ## Создание новой записи. PK ID.
 **Вопрос:** Проект: *** \
@@ -209,6 +236,7 @@ public string Name { get; set; }
 
 Надеюсь, это поможет тебе решить проблему с полем ID. blush
 
+[END]:#
 ---
 
 ## Вывод SQL запросов в консоль DbContext.cs
@@ -219,6 +247,7 @@ public string Name { get; set; }
            .LogTo(Console.WriteLine);//Вывод SQL запросов в консоль
 ```
 
+[END]:#
 ---
 
 ## Публикация в Telegram
@@ -266,6 +295,7 @@ namespace TelegramBotExample
 }
 ```
 
+[END]:#
 ---
 
 ## Если базе данных SQLite поле PK имеет тип INTEGER, то какой тип должно быть у свойства Id?
@@ -273,6 +303,7 @@ namespace TelegramBotExample
 **Вопрос:** Почему long, а не int? \
 **Ответ:** Потому что в SQLite тип INTEGER имеет диапазон значений от -9223372036854775808 до +9223372036854775807 \
 
+[END]:#
 ---
 
  ## Как можно ограничить число знаков после запятой? <input asp-for="value" class="form-control" type=". . . (Razor Pages)
@@ -288,6 +319,7 @@ namespace TelegramBotExample
 <input class="form-control" type="number" data-val="true" id="value" name="value" value="" />
 ```
 
+[END]:#
 ---
 ## Ввод даты-времени, даты Razor Pages
 
@@ -308,6 +340,7 @@ namespace TelegramBotExample
 <input asp-for="Actor.YearBirth" class="form-control" type="datetime-local" />
 ```
 
+[END]:#
 ---
 
 ## Получить список установленных версий .NET с помощью команды
@@ -315,6 +348,7 @@ namespace TelegramBotExample
 dotnet --list-sdks
 https://learn.microsoft.com/en-us/dotnet/core/tools/sdk-errors/netsdk1045
 
+[END]:#
 ---
 
 ## Файл настроек приложения
@@ -337,6 +371,7 @@ https://learn.microsoft.com/en-us/dotnet/core/tools/sdk-errors/netsdk1045
 •  appsettings.json not getting copied to build package \
 •  How to load app configuration from appsettings.json in MAUI startup \
 
+[END]:#
 ---
 
 ## Чтение JSON
@@ -465,6 +500,7 @@ downloadPagePathSave = appSettings.downloadPagePathSave;
 Я надеюсь, что эта информация была полезна для вас. Если вы хотите узнать больше о библиотеке Json.NET и ее использовании, вы можете посетить следующую ссылку:
 •  [Json.NET Documentation]
 
+[END]:#
 ---
 
 ## Статический конструктор
@@ -518,6 +554,7 @@ namespace Class_Static
 }
 ```
 
+[END]:#
 ---
 ## Creating a Visual Studio Offline Installer
 Источник: https://trailheadtechnology.com/creating-a-visual-studio-offline-installer/
@@ -548,6 +585,7 @@ This will start the installation, as shown in the following screenshot. The file
 If we open the GUI from the installer, we will see that the selected workflows were installed. \
 In a following post, I’m going to add more information about how the process can be further automated and how it can be used with Windows Sandbox (in Spanish) to create temporary clean development environments. \
 
+[END]:#
 ---
 
 ## scaffold-DbContext
@@ -572,6 +610,7 @@ In a following post, I’m going to add more information about how the process c
 
 Я надеюсь, что это объяснило вам смысл строки генерации классов на основании базы данных. Если у вас есть еще какие-то вопросы о C# или других темах, я буду рад ответить на них. blush
 
+[END]:#
 ---
 
 **1.2) ВОПРОС:** В чем приемущество разделения этих пространств имен:
@@ -649,4 +688,59 @@ public Blog Blog { get; set; }
 }
 ```
 
+[END]:#
+---
+## EF Core: Будет ли с ключем -Data Annotations по умолчанию каскадное удаление работать не будет?
+
+С ключом -Data Annotations по умолчанию каскадное удаление **работать будет**, но только для **обязательных** связей, то есть тех, где свойство внешнего ключа не может быть null. Для **необязательных** связей, то есть тех, где свойство внешнего ключа может быть null, по умолчанию будет использоваться поведение **ClientSetNull**, которое устанавливает значение внешнего ключа в null, а не удаляет зависимые сущности \
+https://learn.microsoft.com/en-us/ef/core/saving/cascade-delete.
+
+Например, если у вас есть такая модель:
+```cs
+public class Blog
+{
+public int Id { get; set; }
+public string Name { get; set; }
+public IList<Post> Posts { get; } = new List<Post> ();
+}
+
+public class Post
+{
+public int Id { get; set; }
+public string Title { get; set; }
+public string Content { get; set; }
+public int BlogId { get; set; }
+public Blog Blog { get; set; }
+}
+```
+То по умолчанию EF Core сконфигурирует эту связь как обязательную, так как свойство Post.BlogId не может быть null. Это означает, что при удалении блога все его посты также будут удалены из базы данных. Это поведение называется https://www.bing.com/search?form=SKPBOT&q=Cascade.
+
+Однако, если вы измените тип свойства Post.BlogId на int?, то EF Core сконфигурирует эту связь как необязательную, так как свойство Post.BlogId теперь может быть null. Это означает, что при удалении блога все его посты не будут удалены из базы данных, а их свойства Post.BlogId будут установлены в null. Это поведение называется https://www.bing.com/search?form=SKPBOT&q=ClientSetNull.
+
+Вы можете изменить поведение удаления для любой связи, используя Fluent API или Data Annotations. С помощью Fluent API вы можете использовать метод .OnDelete для указания желаемого поведения. Например:
+```cs
+modelBuilder.Entity<Post>()
+.HasOne(p => p.Blog)
+.WithMany(b => b.Posts)
+.OnDelete(DeleteBehavior.Cascade); // or any other behavior
+```
+
+С помощью Data Annotations вы можете использовать атрибут [Required] для указания обязательности связи. Если вы добавите этот атрибут к навигационному свойству или к свойству внешнего ключа, то EF Core сконфигурирует связь как обязательную и применит к ней поведение **Cascade**. Например:
+```cs
+public class Post
+{
+public int Id { get; set; }
+public string Title { get; set; }
+public string Content { get; set; }
+
+[Required] // this makes the relationship required and cascade delete enabled
+public int? BlogId { get; set; }
+
+[Required] // this also makes the relationship required and cascade delete enabled
+public Blog Blog { get; set; }
+}
+```
+Если вы не добавите атрибут [Required] к навигационному свойству или к свойству внешнего ключа, то EF Core сконфигурирует связь как необязательную и применит к ней поведение **ClientSetNull**.
+
+[END]:#
 ---
