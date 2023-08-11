@@ -17,8 +17,8 @@
 - [Чтение JSON](#чтение-json)
 - [Статический конструктор](#статический-конструктор)
 - [Creating a Visual Studio Offline Installer](#creating-a-visual-studio-offline-installer)
-- [scaffold-DbContext](#scaffold-dbcontext)
-- [EF Core: Будет ли с ключем -Data Annotations по умолчанию каскадное удаление работать не будет?](#ef-core-будет-ли-с-ключем--data-annotations-по-умолчанию-каскадное-удаление-работать-не-будет)
+- [EF Core. scaffold-DbContext](#ef-core-scaffold-dbcontext)
+- [EF Core. scaffold-DbContext. Будет ли с ключем -Data Annotations по умолчанию каскадное удаление работать не будет?](#ef-core-scaffold-dbcontext-будет-ли-с-ключем--data-annotations-по-умолчанию-каскадное-удаление-работать-не-будет)
 
 
 ## Оформление markdown;
@@ -568,7 +568,7 @@ In a following post, I’m going to add more information about how the process c
 <!--END-->
 ---
 
-## scaffold-DbContext
+## EF Core. scaffold-DbContext
 **1.1) ВОПРОС:** C#. Дай подробные объяснения этой строке генерации классов на основании базы данных:
 *scaffold-DbContext "Строка подключения" Microsoft.EntityFrameworkCore.SqlServer -ContextDir Data -OutputDir Models\Generated -DataAnnotation -ContextNamespace ContosoPissa.Data -Namespace ContosoPizza.Models*
 
@@ -670,7 +670,7 @@ public Blog Blog { get; set; }
 
 <!--END-->
 ---
-## EF Core: Будет ли с ключем -Data Annotations по умолчанию каскадное удаление работать не будет?
+## EF Core. scaffold-DbContext. Будет ли с ключем -Data Annotations по умолчанию каскадное удаление работать не будет?
 
 С ключом -Data Annotations по умолчанию каскадное удаление **работать будет**, но только для **обязательных** связей, то есть тех, где свойство внешнего ключа не может быть null. Для **необязательных** связей, то есть тех, где свойство внешнего ключа может быть null, по умолчанию будет использоваться поведение **ClientSetNull**, которое устанавливает значение внешнего ключа в null, а не удаляет зависимые сущности \
 https://learn.microsoft.com/en-us/ef/core/saving/cascade-delete.
