@@ -20,7 +20,7 @@
 - [EF Core. scaffold-DbContext](#ef-core-scaffold-dbcontext)
 - [EF Core. scaffold-DbContext. Пространство имен -ContextNamespace и  -Namespace](#ef-core-scaffold-dbcontext-пространство-имен--contextnamespace-и---namespace)
 - [EF Core. scaffold-DbContext. Ключ -DataAnnotation](#ef-core-scaffold-dbcontext-ключ--dataannotation)
-- [EF Core. scaffold-DbContext. Будет ли с ключем -Data Annotations по умолчанию каскадное удаление работать не будет?](#ef-core-scaffold-dbcontext-будет-ли-с-ключем--data-annotations-по-умолчанию-каскадное-удаление-работать-не-будет)
+- [EF Core. scaffold-DbContext. Будет ли с ключем -Data Annotations по умолчанию работать каскадное удаление?](#ef-core-scaffold-dbcontext-будет-ли-с-ключем--data-annotations-по-умолчанию-работать-каскадное-удаление)
 
 
 ## Оформление markdown;
@@ -673,7 +673,7 @@ public Blog Blog { get; set; }
 
 <!--END-->
 ---
-## EF Core. scaffold-DbContext. Будет ли с ключем -Data Annotations по умолчанию каскадное удаление работать не будет?
+## EF Core. scaffold-DbContext. Будет ли с ключем -Data Annotations по умолчанию работать каскадное удаление?
 
 С ключом -Data Annotations по умолчанию каскадное удаление **работать будет**, но только для **обязательных** связей, то есть тех, где свойство внешнего ключа не может быть null. Для **необязательных** связей, то есть тех, где свойство внешнего ключа может быть null, по умолчанию будет использоваться поведение **ClientSetNull**, которое устанавливает значение внешнего ключа в null, а не удаляет зависимые сущности \
 https://learn.microsoft.com/en-us/ef/core/saving/cascade-delete.
