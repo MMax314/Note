@@ -21,6 +21,7 @@
 - [EF Core. scaffold-DbContext. Пространство имен -ContextNamespace и  -Namespace](#ef-core-scaffold-dbcontext-пространство-имен--contextnamespace-и---namespace)
 - [EF Core. scaffold-DbContext. Ключ -DataAnnotation](#ef-core-scaffold-dbcontext-ключ--dataannotation)
 - [EF Core. scaffold-DbContext. Будет ли с ключем -Data Annotations по умолчанию работать каскадное удаление?](#ef-core-scaffold-dbcontext-будет-ли-с-ключем--data-annotations-по-умолчанию-работать-каскадное-удаление)
+- [SQL](#sql)
 - [SQL. Декартов взрыв. Картезианский взрыв.](#sql-декартов-взрыв-картезианский-взрыв)
 - [SQL. Декартов взрыв. Картезианский взрыв. Выбор названия](#sql-декартов-взрыв-картезианский-взрыв-выбор-названия)
 
@@ -731,6 +732,63 @@ public Blog Blog { get; set; }
 <!--END-->
 ---
 
+## SQL 
+Хорошо, я понимаю, что вы хотите посмотреть скрипты для создания и заполнения таблиц, которые я использовал в своих примерах запросов. Это разумный и практичный вопрос, на который я с удовольствием отвечу. blush
+
+Для создания таблиц Customers и Orders я использовал следующий скрипт SQL:
+
+```sql
+-- Создание таблицы Customers
+CREATE TABLE Customers (
+CustomerID INT PRIMARY KEY,
+CustomerName VARCHAR(50) NOT NULL,
+Country VARCHAR(50) NOT NULL
+);
+
+-- Создание таблицы Orders
+CREATE TABLE Orders (
+OrderID INT PRIMARY KEY,
+OrderDate DATE NOT NULL,
+CustomerID INT NOT NULL,
+Country VARCHAR(50) NOT NULL,
+FOREIGN KEY (CustomerID) REFERENCES Customers(CustomerID)
+);
+
+--Для заполнения таблиц Customers и Orders я использовал следующий скрипт SQL:
+-- Заполнение таблицы Customers
+INSERT INTO Customers (CustomerID, CustomerName, Country) VALUES
+(1, 'Alice', 'USA'),
+(2, 'Bob', 'UK'),
+(3, 'Charlie', 'Australia');
+
+-- Заполнение таблицы Orders
+INSERT INTO Orders (OrderID, OrderDate, CustomerID, Country) VALUES
+(1, '2023-01-01', 1, 'USA'),
+(2, '2023-01-02', 2, 'UK'),
+(3, '2023-01-03', 3, 'Australia'),
+(4, '2023-01-04', 2, 'USA'),
+(5, '2023-01-05', 3, 'UK'),
+(6, '2023-01-06', 1, 'Australia');
+
+--После выполнения этих скриптов вы можете проверить содержимое таблиц с помощью следующих запросов:
+
+-- Проверка содержимого таблицы Customers
+SELECT * FROM Customers;
+
+-- Проверка содержимого таблицы Orders
+SELECT * FROM Orders;
+Вы также можете повторить мои примеры запросов с использованием оператора JOIN и увидеть результаты:
+
+-- Пример запроса с декартовым взрывом
+SELECT * FROM Customers CROSS JOIN Orders;
+
+-- Пример запроса с картезианским взрывом
+SELECT * FROM Customers INNER JOIN Orders ON Customers.Country = Orders.Country;
+
+-- Пример правильного запроса с условием JOIN по полю CustomerID
+SELECT * FROM Customers INNER JOIN Orders ON Customers.CustomerID = Orders.CustomerID;
+```
+
 ## SQL. Декартов взрыв. Картезианский взрыв.
 
 Декартов взрыв и картезианский взрыв - это два термина, которые используются для описания проблемы производительности, возникающей при выполнении запросов SQL с использованием оператора JOIN. Эта проблема заключается в том, что при объединении двух или более таблиц с большим количеством строк результат может содержать слишком много строк, которые не нужны для решения задачи. Это приводит к избыточности данных, замедлению обработки и потере ресурсов.
@@ -797,6 +855,7 @@ CustomerID | CustomerName | Country   | OrderID | OrderDate  | Country
 Теперь мы получаем только те строки, которые соответствуют нашей задаче.
 
 ---
+<!--END-->
 
 ## SQL. Декартов взрыв. Картезианский взрыв. Выбор названия
 
@@ -871,3 +930,19 @@ CustomerID | CustomerName | Country   | OrderID | OrderDate  | Country
 Cartesian product - Wikipedia: https://en.wikipedia.org/wiki/Cartesian_product
 
 ---
+<!--END-->
+
+---
+<!--END-->
+
+---
+<!--END-->
+
+---
+<!--END-->
+
+---
+<!--END-->
+
+---
+<!--END-->
