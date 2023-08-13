@@ -1,5 +1,5 @@
 ## Оглавление:
-- [Общая группа](#общая-группа)
+- [Разное](#разное)
   - [Оформление markdown;](#оформление-markdown)
   - [Режимы Bing](#режимы-bing)
   - [Creating a Visual Studio Offline Installer](#creating-a-visual-studio-offline-installer)
@@ -60,7 +60,7 @@ var id = reader.GetInt32(idIndex);
 ```
 - - -
 <!--END-->
-# Общая группа
+# Разное
 <!--BEGIN-->
 ## Оформление markdown;
 * [Расширение для Visual Studio: Markdown Editor v2](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.MarkdownEditor2)
