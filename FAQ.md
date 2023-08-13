@@ -1,20 +1,22 @@
 ## Оглавление:
 - [Общая группа](#общая-группа)
   - [Оформление markdown;](#оформление-markdown)
-  - [Как получить занчения поля по его имени? var reader = command.ExecuteReader();](#как-получить-занчения-поля-по-его-имени-var-reader--commandexecutereader)
-  - [Автоинкремент SQLite](#автоинкремент-sqlite)
-  - [Разница между reader.GetOrdinal("id") и reader.GetOrdinal("id")](#разница-между-readergetordinalid-и-readergetordinalid)
-  - [Генерация GUID в Visual Studio. Hot keys](#генерация-guid-в-visual-studio-hot-keys)
   - [Режимы Bing](#режимы-bing)
-  - [Создание новой записи. PK ID.](#создание-новой-записи-pk-id)
+  - [Creating a Visual Studio Offline Installer](#creating-a-visual-studio-offline-installer)
+- [C#](#c)
   - [Вывод SQL запросов в консоль DbContext.cs](#вывод-sql-запросов-в-консоль-dbcontextcs)
-  - [Публикация в Telegram](#публикация-в-telegram)
-  - [Если базе данных SQLite поле PK имеет тип INTEGER, то какой тип должно быть у свойства Id?](#если-базе-данных-sqlite-поле-pk-имеет-тип-integer-то-какой-тип-должно-быть-у-свойства-id)
+  - [Разница между reader.GetOrdinal("id") и reader.GetOrdinal("id")](#разница-между-readergetordinalid-и-readergetordinalid-1)
+  - [Генерация GUID в Visual Studio. Hot keys](#генерация-guid-в-visual-studio-hot-keys)
   - [Получить список установленных версий .NET с помощью команды](#получить-список-установленных-версий-net-с-помощью-команды)
+  - [Как получить занчения поля по его имени? var reader = command.ExecuteReader();](#как-получить-занчения-поля-по-его-имени-var-reader--commandexecutereader)
+  - [Публикация в Telegram](#публикация-в-telegram)
   - [Файл настроек приложения](#файл-настроек-приложения)
   - [Чтение JSON](#чтение-json)
   - [Статический конструктор](#статический-конструктор)
-  - [Creating a Visual Studio Offline Installer](#creating-a-visual-studio-offline-installer)
+  - [Создание новой записи. PK ID.](#создание-новой-записи-pk-id)
+- [SQLite](#sqlite)
+  - [SQLite. Автоинкремент SQLite](#sqlite-автоинкремент-sqlite)
+  - [SQLite. Если базе данных SQLite поле PK имеет тип INTEGER, то какой тип должно быть у свойства Id?](#sqlite-если-базе-данных-sqlite-поле-pk-имеет-тип-integer-то-какой-тип-должно-быть-у-свойства-id)
 - [SQL](#sql)
   - [SQL. Декартов взрыв. Картезианский взрыв. Выбор названия](#sql-декартов-взрыв-картезианский-взрыв-выбор-названия)
   - [SQL. Декартов взрыв. Картезианский взрыв. Создание таблиц и их заполнение](#sql-декартов-взрыв-картезианский-взрыв-создание-таблиц-и-их-заполнение)
@@ -29,14 +31,154 @@
   - [Razor Pages. Как можно ограничить число знаков после запятой? \<input asp-for="value" class="form-control" type=". . .](#razor-pages-как-можно-ограничить-число-знаков-после-запятой-input-asp-forvalue-classform-control-type--)
   - [Razor Pages. Ввод даты-времени, даты](#razor-pages-ввод-даты-времени-даты)
 
+<!-- ---------------------------------------- -->
+<!-- ---------------------------------------- -->
+<!-- ---------------------------------------- -->
 
+<!--BEGIN-->
+## Разница между reader.GetOrdinal("id") и reader.GetOrdinal("id")
+Разница между reader["id"] и reader.GetOrdinal("id") в том, что первый вариант использует индексатор, который внутри вызывает метод GetValue с индексом, полученным из метода GetOrdinal https://stackoverflow.com/questions/31742331/how-to-properly-read-data-from-sqldatareader-in-c. \
+ То есть, reader["id"] эквивалентен reader.GetValue(reader.GetOrdinal("id")). Второй вариант просто возвращает индекс колонки по ее имени, без получения значения. \
+ Если ты хочешь получить значение из reader по имени колонки, то ты можешь использовать любой из этих вариантов, но первый более краткий и читабельный. Однако, если ты хочешь повысить производительность, то ты можешь сохранить индекс колонки в переменную вне цикла и использовать его для получения значения: \ 
+https://stackoverflow.com/questions/31742331/how-to-properly-read-data-from-sqldatareader-in-c. \
+Например:
+```cs
+var idIndex = reader.GetOrdinal("id");
+while (reader.Read())
+{
+	var id = reader.GetValue(idIndex);
+	...
+}
+```
 
+Также, если ты знаешь тип данных в колонке, то ты можешь использовать специализированные методы, такие как GetInt32, GetString и т.д., которые делают проверку типа и приведение за тебя: \
+https://stackoverflow.com/questions/31742331/how-to-properly-read-data-from-sqldatareader-in-c \
+https://stackoverflow.com/questions/45609498/exceldatareader-getordinal-method-in-net-core. \
+Например:
+```cs
+var id = reader.GetInt32(idIndex);
+```
+- - -
+<!--END-->
 # Общая группа
 <!--BEGIN-->
 ## Оформление markdown;
 * [Расширение для Visual Studio: Markdown Editor v2](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.MarkdownEditor2)
 * [GitHub Flavored Markdown Spec](https://github.github.com/gfm/)
 * Visual Studio Code. Добавить оглавление: *Command Pallete* -> *Markdown All in One: Create Table of Contents*
+- - -
+<!--END-->
+
+<!--BEGIN-->
+## Режимы Bing
+
+**/mode** - позволяет вам переключаться между режимами Balanced, Creative и Precise. \
+**/help** - показывает вам инструкции и правила для общения со мной. \
+**/feedback** - позволяет вам оставить отзыв о моем качестве и удовлетворенности. \
+**/image** - позволяет вам запросить, чтобы я сгенерировал изображение по вашему запросу. Это работает только в режимах Creative и Precise. \
+**/content** - позволяет вам запросить, чтобы я сгенерировал контент, такой как стихи, истории, код, эссе, песни, пародии на знаменитостей и многое другое. \
+**/improve** - позволяет вам запросить, чтобы я помог вам улучшить или оптимизировать ваш контент. \
+
+Чтобы переключиться между режимами, введите /mode <название режима>. \
+*Например:* \
+/mode Creative \
+/mode Precise \
+/mode Balanced \
+
+**Пример:* \
+@content \
+Небо, вода
+
+@mode Precise
+- - -
+<!--END-->
+
+<!--BEGIN-->
+## Creating a Visual Studio Offline Installer
+Источник: https://trailheadtechnology.com/creating-a-visual-studio-offline-installer/
+
+First, we need to get the installer from the [download page](https://visualstudio.microsoft.com/vs/preview/#download-preview) and store it in a local folder. I will use c:\VSOffline
+
+After that, we need to open a command window in the folder where the installer was downloaded and then run the following instruction, which will start the slow download process.
+
+```bash
+VisualStudioSetup.exe --layout C:\VSOffline --lang en-US --add Microsoft.VisualStudio.Workload.NetCrossPlat --add Microsoft.VisualStudio.Workload.Universal --includeRecommended --includeOptional
+```
+
+Description of the parameters: \
+**–layout** is the destination folder \
+**–lang** the language to download, available values are specified in the BCP 47 column in the following link \
+**–includeRecommended** & **–includeOptional** will make sure that all the needed files will be included \
+**–add** used to include all the workflows that we need. In my case, I’m interested in cross-platform development, but you can see the available flows here \
+
+**Update our installer** \
+If we already created the installer, we can update to the latest version using the same call used to create our initial version.
+
+**Install Visual Studio** \
+In the same command line window used to do the download, we can use the following command.
+```bash
+VisualStudioSetup.**exe** --passive --norestart --includeOptional
+```
+This will start the installation, as shown in the following screenshot. The files are not downloaded again. The installer is only checking that they are available. \
+If we open the GUI from the installer, we will see that the selected workflows were installed. \
+In a following post, I’m going to add more information about how the process can be further automated and how it can be used with Windows Sandbox (in Spanish) to create temporary clean development environments. \
+- - -
+<!--END-->
+
+<!--BEGIN_SECTION: C#-->
+# C#
+<!--BEGIN-->
+## Вывод SQL запросов в консоль DbContext.cs
+
+```cs
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        => optionsBuilder.UseSqlite(Program.connectionString)
+           .LogTo(Console.WriteLine);//Вывод SQL запросов в консоль
+```
+- - -
+<!--END-->
+
+<!--BEGIN-->
+## Разница между reader.GetOrdinal("id") и reader.GetOrdinal("id")
+Разница между reader["id"] и reader.GetOrdinal("id") в том, что первый вариант использует индексатор, который внутри вызывает метод GetValue с индексом, полученным из метода GetOrdinal https://stackoverflow.com/questions/31742331/how-to-properly-read-data-from-sqldatareader-in-c. \
+ То есть, reader["id"] эквивалентен reader.GetValue(reader.GetOrdinal("id")). Второй вариант просто возвращает индекс колонки по ее имени, без получения значения. \
+ Если ты хочешь получить значение из reader по имени колонки, то ты можешь использовать любой из этих вариантов, но первый более краткий и читабельный. Однако, если ты хочешь повысить производительность, то ты можешь сохранить индекс колонки в переменную вне цикла и использовать его для получения значения: \ 
+https://stackoverflow.com/questions/31742331/how-to-properly-read-data-from-sqldatareader-in-c. \
+Например:
+```cs
+var idIndex = reader.GetOrdinal("id");
+while (reader.Read())
+{
+	var id = reader.GetValue(idIndex);
+	...
+}
+```
+
+Также, если ты знаешь тип данных в колонке, то ты можешь использовать специализированные методы, такие как GetInt32, GetString и т.д., которые делают проверку типа и приведение за тебя: \
+https://stackoverflow.com/questions/31742331/how-to-properly-read-data-from-sqldatareader-in-c \
+https://stackoverflow.com/questions/45609498/exceldatareader-getordinal-method-in-net-core. \
+Например:
+```cs
+var id = reader.GetInt32(idIndex);
+```
+- - -
+<!--END-->
+
+<!--BEGIN-->
+## Генерация GUID в Visual Studio. Hot keys
+Нет одной универсальной комбинации горячих клавиш для генерации GUID, так как это зависит от того, какой инструмент или расширение ты используешь для этой цели. Но вот некоторые примеры, которые я нашел в интернете: \
+•  Если ты используешь внешний инструмент PowerShell, как я описал ранее, то ты можешь назначить ему любую свободную комбинацию горячих клавиш в меню *Инструменты -> Параметры -> Среда ->Клавиатура*, выбрав команду *Tools.ExternalCommandX*, где X - номер инструмента в списке https://www.tenforums.com/tutorials/130522-generate-globally-unique-identifier-guid-windows.html. \
+•  Если ты используешь расширение Visual Commander, то ты можешь назначить ему любую свободную комбинацию горячих клавиш в меню *Инструменты -> Параметры -> Среда ->Клавиатура*, выбрав команду VCmd.CommandX, где X - номер команды в списке https://stackoverflow.com/questions/58634771/generating-a-plain-guid-in-visual-studio. \
+•  Если ты используешь окно C# Interactive, то ты можешь создать сниппет кода для генерации GUID и назначить ему любую свободную комбинацию горячих клавиш в меню *Инструменты -> Параметры -> Среда ->Клавиатура*, выбрав команду *Edit.InvokeSnippetFromShortcut* https://bing.com/search?q=most+common+hotkey+for+generate+guid. \
+•  Если ты используешь макрос для Visual Studio 2010 или более ранней версии, то ты можешь назначить ему любую свободную комбинацию горячих клавиш в меню *Инструменты -> Параметры -> Среда -> Клавиатура*, выбрав команду *Macros.MyMacros.Module1.CreateGUID*. Например, один из источников https://abhijitjana.net/2011/01/18/use-shortcut-key-to-generate-guid-very-quickly-in-visual-studio/ предлагает использовать Alt+G для этого макроса.
+- - -
+<!--END-->
+
+<!--BEGIN-->
+## Получить список установленных версий .NET с помощью команды
+
+dotnet --list-sdks
+https://learn.microsoft.com/en-us/dotnet/core/tools/sdk-errors/netsdk1045
 - - -
 <!--END-->
 
@@ -113,140 +255,6 @@ while (reader.Read())
 <!--END-->
 
 <!--BEGIN-->
-## Автоинкремент SQLite
-
-**Резюме:** \
-Ключевое слово AUTOINCREMENT накладывает дополнительную нагрузку на ЦП, память, дисковое пространство и дисковый ввод-вывод, и его следует избегать, если это не является строго необходимым. Обычно это не требуется.
-
-В SQLite столбец с типом INTEGER PRIMARY KEY является псевдонимом для ROWID (за исключением таблиц WITHOUT ROWID ), который всегда представляет собой 64-битное целое число со знаком.
-
-В INSERT , если столбцу ROWID или INTEGER PRIMARY KEY явно не задано значение, оно будет автоматически заполнено неиспользуемым целым числом, обычно на единицу больше, чем самый большой ROWID, используемый в настоящее время. Это верно независимо от того, используется ли ключевое слово AUTOINCREMENT.
-
-Если ключевое слово AUTOINCREMENT появляется после INTEGER PRIMARY KEY, это изменяет алгоритм автоматического назначения ROWID, чтобы предотвратить повторное использование ROWID в течение всего срока службы базы данных. Другими словами, целью AUTOINCREMENT является предотвращение повторного использования ROWID из ранее удаленных строк.
-
-[Источник](https://www.sqlite.org/autoinc.html)
-- - -
-<!--END-->
-
-<!--BEGIN-->
-## Разница между reader.GetOrdinal("id") и reader.GetOrdinal("id")
-Разница между reader["id"] и reader.GetOrdinal("id") в том, что первый вариант использует индексатор, который внутри вызывает метод GetValue с индексом, полученным из метода GetOrdinal https://stackoverflow.com/questions/31742331/how-to-properly-read-data-from-sqldatareader-in-c. \
- То есть, reader["id"] эквивалентен reader.GetValue(reader.GetOrdinal("id")). Второй вариант просто возвращает индекс колонки по ее имени, без получения значения. \
- Если ты хочешь получить значение из reader по имени колонки, то ты можешь использовать любой из этих вариантов, но первый более краткий и читабельный. Однако, если ты хочешь повысить производительность, то ты можешь сохранить индекс колонки в переменную вне цикла и использовать его для получения значения: \ 
-https://stackoverflow.com/questions/31742331/how-to-properly-read-data-from-sqldatareader-in-c. \
-Например:
-```cs
-var idIndex = reader.GetOrdinal("id");
-while (reader.Read())
-{
-	var id = reader.GetValue(idIndex);
-	...
-}
-```
-
-Также, если ты знаешь тип данных в колонке, то ты можешь использовать специализированные методы, такие как GetInt32, GetString и т.д., которые делают проверку типа и приведение за тебя: \
-https://stackoverflow.com/questions/31742331/how-to-properly-read-data-from-sqldatareader-in-c \
-https://stackoverflow.com/questions/45609498/exceldatareader-getordinal-method-in-net-core. \
-Например:
-```cs
-var id = reader.GetInt32(idIndex);
-```
-- - -
-<!--END-->
-
-<!--BEGIN-->
-## Генерация GUID в Visual Studio. Hot keys
-
-Нет одной универсальной комбинации горячих клавиш для генерации GUID, так как это зависит от того, какой инструмент или расширение ты используешь для этой цели. Но вот некоторые примеры, которые я нашел в интернете: \
-•  Если ты используешь внешний инструмент PowerShell, как я описал ранее, то ты можешь назначить ему любую свободную комбинацию горячих клавиш в меню *Инструменты -> Параметры -> Среда ->Клавиатура*, выбрав команду *Tools.ExternalCommandX*, где X - номер инструмента в списке https://www.tenforums.com/tutorials/130522-generate-globally-unique-identifier-guid-windows.html. \
-•  Если ты используешь расширение Visual Commander, то ты можешь назначить ему любую свободную комбинацию горячих клавиш в меню *Инструменты -> Параметры -> Среда ->Клавиатура*, выбрав команду VCmd.CommandX, где X - номер команды в списке https://stackoverflow.com/questions/58634771/generating-a-plain-guid-in-visual-studio. \
-•  Если ты используешь окно C# Interactive, то ты можешь создать сниппет кода для генерации GUID и назначить ему любую свободную комбинацию горячих клавиш в меню *Инструменты -> Параметры -> Среда ->Клавиатура*, выбрав команду *Edit.InvokeSnippetFromShortcut* https://bing.com/search?q=most+common+hotkey+for+generate+guid. \
-•  Если ты используешь макрос для Visual Studio 2010 или более ранней версии, то ты можешь назначить ему любую свободную комбинацию горячих клавиш в меню *Инструменты -> Параметры -> Среда -> Клавиатура*, выбрав команду *Macros.MyMacros.Module1.CreateGUID*. Например, один из источников https://abhijitjana.net/2011/01/18/use-shortcut-key-to-generate-guid-very-quickly-in-visual-studio/ предлагает использовать Alt+G для этого макроса.
-- - -
-<!--END-->
-
-<!--BEGIN-->
-## Режимы Bing
-
-**/mode** - позволяет вам переключаться между режимами Balanced, Creative и Precise. \
-**/help** - показывает вам инструкции и правила для общения со мной. \
-**/feedback** - позволяет вам оставить отзыв о моем качестве и удовлетворенности. \
-**/image** - позволяет вам запросить, чтобы я сгенерировал изображение по вашему запросу. Это работает только в режимах Creative и Precise. \
-**/content** - позволяет вам запросить, чтобы я сгенерировал контент, такой как стихи, истории, код, эссе, песни, пародии на знаменитостей и многое другое. \
-**/improve** - позволяет вам запросить, чтобы я помог вам улучшить или оптимизировать ваш контент. \
-
-Чтобы переключиться между режимами, введите /mode <название режима>. \
-*Например:* \
-/mode Creative \
-/mode Precise \
-/mode Balanced \
-
-**Пример:* \
-@content \
-Небо, вода
-
-@mode Precise
-- - -
-<!--END-->
-
-<!--BEGIN-->
-## Создание новой записи. PK ID.
-**Вопрос:** Проект: *** \
-Файл создания Actors:
-1) /Actors/Create.cshtml
-2) /Actors/Create.cshtml.cs
-
-Вопрос: В проекте используется база данных SQLite version 3. Если в таблице используется PK Integer, то при создании не обязательно задавать значение полю ID, база сама его заполнит. Сейчас, при создании новой записи Actor выводится поле ввода для ID. Что нужно изменить, чтобы поле не выводилось, а заполнялось самой базой данных. \
-
-**Ответ:** Для того, чтобы скрыть поле ID при создании новой записи Actor, ты можешь использовать атрибут [HiddenInput] в модели Actor или в модели ActorViewModel, если ты используешь ее для передачи данных между представлением и контроллером. Этот атрибут позволяет сгенерировать скрытое поле <input type="hidden"> с помощью метода Html.HiddenFor() в представлении. Например:
-
-В модели:
-```cs
-public class Actor
-{
-[HiddenInput]
-public int ID { get; set; }
-public string Name { get; set; }
-// other properties
-}
-```
-В представлении:
-
-```html
-@model Actor
-
-<form method="post">
-@Html.HiddenFor(model => model.ID)
-@Html.LabelFor(model => model.Name)
-@Html.EditorFor(model => model.Name)
-<!-- other fields -->
-<input type="submit" value="Create" />
-</form>
-```
-Таким образом, ты сможешь скрыть поле ID от пользователя, но передать его значение в контроллер при отправке формы. База данных SQLite сама заполнит это поле при создании новой записи, если оно имеет тип Integer и является первичным ключом.
-
-Для более подробной информации по работе со скрытыми полями в ASP.NET Core Razor Pages, ты можешь посмотреть следующие ссылки:
-
-•  https://stackoverflow.com/questions/63208733/asp-net-core-with-razor-pages-bind-hidden-input \
-•  https://www.aspsnippets.com/Articles/ASPNet-Core-Razor-Pages-Hidden-Field-example.aspx \
-•  https://www.tutorialsteacher.com/mvc/htmlhelper-hidden-hiddenfor \
-
-Надеюсь, это поможет тебе решить проблему с полем ID. blush
-- - -
-<!--END-->
-
-<!--BEGIN-->
-## Вывод SQL запросов в консоль DbContext.cs
-
-```cs
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        => optionsBuilder.UseSqlite(Program.connectionString)
-           .LogTo(Console.WriteLine);//Вывод SQL запросов в консоль
-```
-- - -
-<!--END-->
-
-<!--BEGIN-->
 ## Публикация в Telegram
 **ВОПРОСЫ:**
 1) Что нужно для того, чтобы приложение самостоятельно публиковало сообщения в своем канале Telegram?
@@ -291,22 +299,6 @@ namespace TelegramBotExample
 	}
 }
 ```
-- - -
-<!--END-->
-
-<!--BEGIN-->
-## Если базе данных SQLite поле PK имеет тип INTEGER, то какой тип должно быть у свойства Id?
-**Ответ:** long \
-**Вопрос:** Почему long, а не int? \
-**Ответ:** Потому что в SQLite тип INTEGER имеет диапазон значений от -9223372036854775808 до +9223372036854775807 \
-- - -
-<!--END-->
-
-<!--BEGIN-->
-## Получить список установленных версий .NET с помощью команды
-
-dotnet --list-sdks
-https://learn.microsoft.com/en-us/dotnet/core/tools/sdk-errors/netsdk1045
 - - -
 <!--END-->
 
@@ -517,36 +509,80 @@ namespace Class_Static
 <!--END-->
 
 <!--BEGIN-->
-## Creating a Visual Studio Offline Installer
-Источник: https://trailheadtechnology.com/creating-a-visual-studio-offline-installer/
+## Создание новой записи. PK ID.
+**Вопрос:** Проект: *** \
+Файл создания Actors:
+1) /Actors/Create.cshtml
+2) /Actors/Create.cshtml.cs
 
-First, we need to get the installer from the [download page](https://visualstudio.microsoft.com/vs/preview/#download-preview) and store it in a local folder. I will use c:\VSOffline
+Вопрос: В проекте используется база данных SQLite version 3. Если в таблице используется PK Integer, то при создании не обязательно задавать значение полю ID, база сама его заполнит. Сейчас, при создании новой записи Actor выводится поле ввода для ID. Что нужно изменить, чтобы поле не выводилось, а заполнялось самой базой данных. \
 
-After that, we need to open a command window in the folder where the installer was downloaded and then run the following instruction, which will start the slow download process.
+**Ответ:** Для того, чтобы скрыть поле ID при создании новой записи Actor, ты можешь использовать атрибут [HiddenInput] в модели Actor или в модели ActorViewModel, если ты используешь ее для передачи данных между представлением и контроллером. Этот атрибут позволяет сгенерировать скрытое поле <input type="hidden"> с помощью метода Html.HiddenFor() в представлении. Например:
 
-```bash
-VisualStudioSetup.exe --layout C:\VSOffline --lang en-US --add Microsoft.VisualStudio.Workload.NetCrossPlat --add Microsoft.VisualStudio.Workload.Universal --includeRecommended --includeOptional
+В модели:
+```cs
+public class Actor
+{
+[HiddenInput]
+public int ID { get; set; }
+public string Name { get; set; }
+// other properties
+}
 ```
+В представлении:
 
-Description of the parameters: \
-**–layout** is the destination folder \
-**–lang** the language to download, available values are specified in the BCP 47 column in the following link \
-**–includeRecommended** & **–includeOptional** will make sure that all the needed files will be included \
-**–add** used to include all the workflows that we need. In my case, I’m interested in cross-platform development, but you can see the available flows here \
+```html
+@model Actor
 
-**Update our installer** \
-If we already created the installer, we can update to the latest version using the same call used to create our initial version.
-
-**Install Visual Studio** \
-In the same command line window used to do the download, we can use the following command.
-```bash
-VisualStudioSetup.**exe** --passive --norestart --includeOptional
+<form method="post">
+@Html.HiddenFor(model => model.ID)
+@Html.LabelFor(model => model.Name)
+@Html.EditorFor(model => model.Name)
+<!-- other fields -->
+<input type="submit" value="Create" />
+</form>
 ```
-This will start the installation, as shown in the following screenshot. The files are not downloaded again. The installer is only checking that they are available. \
-If we open the GUI from the installer, we will see that the selected workflows were installed. \
-In a following post, I’m going to add more information about how the process can be further automated and how it can be used with Windows Sandbox (in Spanish) to create temporary clean development environments. \
+Таким образом, ты сможешь скрыть поле ID от пользователя, но передать его значение в контроллер при отправке формы. База данных SQLite сама заполнит это поле при создании новой записи, если оно имеет тип Integer и является первичным ключом.
+
+Для более подробной информации по работе со скрытыми полями в ASP.NET Core Razor Pages, ты можешь посмотреть следующие ссылки:
+
+•  https://stackoverflow.com/questions/63208733/asp-net-core-with-razor-pages-bind-hidden-input \
+•  https://www.aspsnippets.com/Articles/ASPNet-Core-Razor-Pages-Hidden-Field-example.aspx \
+•  https://www.tutorialsteacher.com/mvc/htmlhelper-hidden-hiddenfor \
+
+Надеюсь, это поможет тебе решить проблему с полем ID. blush
 - - -
 <!--END-->
+
+<!--END_SECTION: C#-->
+
+<!--BEGIN_SECTION: SQLite-->
+# SQLite
+<!--BEGIN-->
+## SQLite. Автоинкремент SQLite
+
+**Резюме:** \
+Ключевое слово AUTOINCREMENT накладывает дополнительную нагрузку на ЦП, память, дисковое пространство и дисковый ввод-вывод, и его следует избегать, если это не является строго необходимым. Обычно это не требуется.
+
+В SQLite столбец с типом INTEGER PRIMARY KEY является псевдонимом для ROWID (за исключением таблиц WITHOUT ROWID ), который всегда представляет собой 64-битное целое число со знаком.
+
+В INSERT , если столбцу ROWID или INTEGER PRIMARY KEY явно не задано значение, оно будет автоматически заполнено неиспользуемым целым числом, обычно на единицу больше, чем самый большой ROWID, используемый в настоящее время. Это верно независимо от того, используется ли ключевое слово AUTOINCREMENT.
+
+Если ключевое слово AUTOINCREMENT появляется после INTEGER PRIMARY KEY, это изменяет алгоритм автоматического назначения ROWID, чтобы предотвратить повторное использование ROWID в течение всего срока службы базы данных. Другими словами, целью AUTOINCREMENT является предотвращение повторного использования ROWID из ранее удаленных строк.
+
+[Источник](https://www.sqlite.org/autoinc.html)
+- - -
+<!--END-->
+
+<!--BEGIN-->
+## SQLite. Если базе данных SQLite поле PK имеет тип INTEGER, то какой тип должно быть у свойства Id?
+**Ответ:** long \
+**Вопрос:** Почему long, а не int? \
+**Ответ:** Потому что в SQLite тип INTEGER имеет диапазон значений от -9223372036854775808 до +9223372036854775807 \
+- - -
+<!--END-->
+
+<!--END_SECTION: SQLite-->
 
 # SQL
 ## SQL. Декартов взрыв. Картезианский взрыв. Выбор названия
