@@ -954,11 +954,11 @@ public Blog Blog { get; set; }
 # Razor pages
 <!--BEGIN-->
  ## Razor pages. Библиотеки визуальных компонентов
-•  Blazorise: это кроссплатформенная библиотека компонентов для Blazor и Razor Pages, которая поддерживает различные фреймворки CSS, такие как Bootstrap, Bulma и Ant Design https://learn.microsoft.com/ru-ru/aspnet/core/blazor/components/?view=aspnetcore-7.0.
+•  **Blazorise**: это кроссплатформенная библиотека компонентов для Blazor и Razor Pages, которая поддерживает различные фреймворки CSS, такие как Bootstrap, Bulma и Ant Design https://learn.microsoft.com/ru-ru/aspnet/core/blazor/components/?view=aspnetcore-7.0.
 
-•  MatBlazor: это библиотека компонентов для Blazor и Razor Pages, которая реализует принципы дизайна Material Design https://learn.microsoft.com/ru-ru/training/modules/create-razor-pages-aspnet-core/.
+•  **MatBlazor**: это библиотека компонентов для Blazor и Razor Pages, которая реализует принципы дизайна Material Design https://learn.microsoft.com/ru-ru/training/modules/create-razor-pages-aspnet-core/.
 
-•  Syncfusion Blazor UI Components: это библиотека профессиональных компонентов для Blazor и Razor Pages, которая предлагает более 70 высокопроизводительных и адаптивных компонентов https://learn.microsoft.com/ru-ru/aspnet/core/mvc/views/razor?view=aspnetcore-7.0.
+•  **Syncfusion Blazor UI Components**: это библиотека профессиональных компонентов для Blazor и Razor Pages, которая предлагает более 70 высокопроизводительных и адаптивных компонентов https://learn.microsoft.com/ru-ru/aspnet/core/mvc/views/razor?view=aspnetcore-7.0.
 - - -
 <!--END-->
 
