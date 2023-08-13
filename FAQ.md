@@ -10,8 +10,9 @@
 - [Вывод SQL запросов в консоль DbContext.cs](#вывод-sql-запросов-в-консоль-dbcontextcs)
 - [Публикация в Telegram](#публикация-в-telegram)
 - [Если базе данных SQLite поле PK имеет тип INTEGER, то какой тип должно быть у свойства Id?](#если-базе-данных-sqlite-поле-pk-имеет-тип-integer-то-какой-тип-должно-быть-у-свойства-id)
-- [Как можно ограничить число знаков после запятой? \<input asp-for="value" class="form-control" type=". . . (Razor Pages)](#как-можно-ограничить-число-знаков-после-запятой-input-asp-forvalue-classform-control-type---razor-pages)
-- [Ввод даты-времени, даты Razor Pages](#ввод-даты-времени-даты-razor-pages)
+- [Razor pages. Библиотеки визуальных компонентов](#razor-pages-библиотеки-визуальных-компонентов)
+- [Razor Pages. Как можно ограничить число знаков после запятой? \<input asp-for="value" class="form-control" type=". . .](#razor-pages-как-можно-ограничить-число-знаков-после-запятой-input-asp-forvalue-classform-control-type--)
+- [Razor Pages. Ввод даты-времени, даты](#razor-pages-ввод-даты-времени-даты)
 - [Получить список установленных версий .NET с помощью команды](#получить-список-установленных-версий-net-с-помощью-команды)
 - [Файл настроек приложения](#файл-настроек-приложения)
 - [Чтение JSON](#чтение-json)
@@ -26,13 +27,15 @@
 - [SQL. Декартов взрыв. Картезианский взрыв. Выбор названия](#sql-декартов-взрыв-картезианский-взрыв-выбор-названия)
 
 
+<!--BEGIN-->
 ## Оформление markdown;
 * [Расширение для Visual Studio: Markdown Editor v2](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.MarkdownEditor2)
 * [GitHub Flavored Markdown Spec](https://github.github.com/gfm/)
 * Visual Studio Code. Добавить оглавление: *Command Pallete* -> *Markdown All in One: Create Table of Contents*
+- - -
 <!--END-->
----
 
+<!--BEGIN-->
 ## Как получить занчения поля по его имени? var reader = command.ExecuteReader();
 ```cs
 using (var connection = new SqliteConnection(connectionString))
@@ -101,9 +104,10 @@ while (reader.Read())
 •  https://stackoverflow.com/questions/28325813/sqldatareader-get-value-by-column-name-not-ordinal-number \
 •  https://stackoverflow.com/questions/8655965/how-to-get-data-by-sqldatareader-getvalue-by-column-name \
 •  https://www.c-sharpcorner.com/article/datareader-in-C-Sharp
- 
+- - -
 <!--END-->
----
+
+<!--BEGIN-->
 ## Автоинкремент SQLite
 
 **Резюме:** \
@@ -116,10 +120,10 @@ while (reader.Read())
 Если ключевое слово AUTOINCREMENT появляется после INTEGER PRIMARY KEY, это изменяет алгоритм автоматического назначения ROWID, чтобы предотвратить повторное использование ROWID в течение всего срока службы базы данных. Другими словами, целью AUTOINCREMENT является предотвращение повторного использования ROWID из ранее удаленных строк.
 
 [Источник](https://www.sqlite.org/autoinc.html)
-
+- - -
 <!--END-->
----
 
+<!--BEGIN-->
 ## Разница между reader.GetOrdinal("id") и reader.GetOrdinal("id")
 Разница между reader["id"] и reader.GetOrdinal("id") в том, что первый вариант использует индексатор, который внутри вызывает метод GetValue с индексом, полученным из метода GetOrdinal https://stackoverflow.com/questions/31742331/how-to-properly-read-data-from-sqldatareader-in-c. \
  То есть, reader["id"] эквивалентен reader.GetValue(reader.GetOrdinal("id")). Второй вариант просто возвращает индекс колонки по ее имени, без получения значения. \
@@ -142,9 +146,10 @@ https://stackoverflow.com/questions/45609498/exceldatareader-getordinal-method-i
 ```cs
 var id = reader.GetInt32(idIndex);
 ```
-
+- - -
 <!--END-->
----
+
+<!--BEGIN-->
 ## Генерация GUID в Visual Studio. Hot keys
 
 Нет одной универсальной комбинации горячих клавиш для генерации GUID, так как это зависит от того, какой инструмент или расширение ты используешь для этой цели. Но вот некоторые примеры, которые я нашел в интернете: \
@@ -152,9 +157,10 @@ var id = reader.GetInt32(idIndex);
 •  Если ты используешь расширение Visual Commander, то ты можешь назначить ему любую свободную комбинацию горячих клавиш в меню *Инструменты -> Параметры -> Среда ->Клавиатура*, выбрав команду VCmd.CommandX, где X - номер команды в списке https://stackoverflow.com/questions/58634771/generating-a-plain-guid-in-visual-studio. \
 •  Если ты используешь окно C# Interactive, то ты можешь создать сниппет кода для генерации GUID и назначить ему любую свободную комбинацию горячих клавиш в меню *Инструменты -> Параметры -> Среда ->Клавиатура*, выбрав команду *Edit.InvokeSnippetFromShortcut* https://bing.com/search?q=most+common+hotkey+for+generate+guid. \
 •  Если ты используешь макрос для Visual Studio 2010 или более ранней версии, то ты можешь назначить ему любую свободную комбинацию горячих клавиш в меню *Инструменты -> Параметры -> Среда -> Клавиатура*, выбрав команду *Macros.MyMacros.Module1.CreateGUID*. Например, один из источников https://abhijitjana.net/2011/01/18/use-shortcut-key-to-generate-guid-very-quickly-in-visual-studio/ предлагает использовать Alt+G для этого макроса.
-
+- - -
 <!--END-->
----
+
+<!--BEGIN-->
 ## Режимы Bing
 
 **/mode** - позволяет вам переключаться между режимами Balanced, Creative и Precise. \
@@ -175,9 +181,10 @@ var id = reader.GetInt32(idIndex);
 Небо, вода
 
 @mode Precise
-
+- - -
 <!--END-->
----
+
+<!--BEGIN-->
 ## Создание новой записи. PK ID.
 **Вопрос:** Проект: *** \
 Файл создания Actors:
@@ -220,10 +227,10 @@ public string Name { get; set; }
 •  https://www.tutorialsteacher.com/mvc/htmlhelper-hidden-hiddenfor \
 
 Надеюсь, это поможет тебе решить проблему с полем ID. blush
-
+- - -
 <!--END-->
----
 
+<!--BEGIN-->
 ## Вывод SQL запросов в консоль DbContext.cs
 
 ```cs
@@ -231,10 +238,10 @@ public string Name { get; set; }
         => optionsBuilder.UseSqlite(Program.connectionString)
            .LogTo(Console.WriteLine);//Вывод SQL запросов в консоль
 ```
-
+- - -
 <!--END-->
----
 
+<!--BEGIN-->
 ## Публикация в Telegram
 **ВОПРОСЫ:**
 1) Что нужно для того, чтобы приложение самостоятельно публиковало сообщения в своем канале Telegram?
@@ -279,19 +286,29 @@ namespace TelegramBotExample
 	}
 }
 ```
-
+- - -
 <!--END-->
----
 
+<!--BEGIN-->
 ## Если базе данных SQLite поле PK имеет тип INTEGER, то какой тип должно быть у свойства Id?
 **Ответ:** long \
 **Вопрос:** Почему long, а не int? \
 **Ответ:** Потому что в SQLite тип INTEGER имеет диапазон значений от -9223372036854775808 до +9223372036854775807 \
-
+- - -
 <!--END-->
----
 
- ## Как можно ограничить число знаков после запятой? <input asp-for="value" class="form-control" type=". . . (Razor Pages)
+ <!--BEGIN-->
+ ## Razor pages. Библиотеки визуальных компонентов
+•  Blazorise: это кроссплатформенная библиотека компонентов для Blazor и Razor Pages, которая поддерживает различные фреймворки CSS, такие как Bootstrap, Bulma и Ant Design https://learn.microsoft.com/ru-ru/aspnet/core/blazor/components/?view=aspnetcore-7.0.
+
+•  MatBlazor: это библиотека компонентов для Blazor и Razor Pages, которая реализует принципы дизайна Material Design https://learn.microsoft.com/ru-ru/training/modules/create-razor-pages-aspnet-core/.
+
+•  Syncfusion Blazor UI Components: это библиотека профессиональных компонентов для Blazor и Razor Pages, которая предлагает более 70 высокопроизводительных и адаптивных компонентов https://learn.microsoft.com/ru-ru/aspnet/core/mvc/views/razor?view=aspnetcore-7.0.
+- - -
+<!--END-->
+
+ <!--BEGIN-->
+ ## Razor Pages. Как можно ограничить число знаков после запятой? <input asp-for="value" class="form-control" type=". . .
 
 Согласно документации Microsoft https://stackoverflow.com/questions/14727979/how-to-allow-only-numbers-in-textbox-in-mvc4-razor, вы можете использовать атрибут asp-format для задания формата для ввода чисел в текстовое поле. Например, asp-format="{0:F2}" ограничит число двумя знаками после запятой. Вы также можете использовать атрибут type для задания типа ввода, например type="number" для ввода только чисел https://www.learnrazorpages.com/razor-pages/tag-helpers/input-tag-helper. \
 
@@ -303,10 +320,11 @@ namespace TelegramBotExample
 ```html
 <input class="form-control" type="number" data-val="true" id="value" name="value" value="" />
 ```
-
+- - -
 <!--END-->
----
-## Ввод даты-времени, даты Razor Pages
+
+<!--BEGIN-->
+## Razor Pages. Ввод даты-времени, даты
 
 <input asp-for="Actor.YearBirth" class="form-control" type="date" asp-format="{0:yyyy-MM-dd}" />
 
@@ -324,18 +342,18 @@ namespace TelegramBotExample
 <!-- Дата-время -->
 <input asp-for="Actor.YearBirth" class="form-control" type="datetime-local" />
 ```
-
+- - -
 <!--END-->
----
 
+<!--BEGIN-->
 ## Получить список установленных версий .NET с помощью команды
 
 dotnet --list-sdks
 https://learn.microsoft.com/en-us/dotnet/core/tools/sdk-errors/netsdk1045
-
+- - -
 <!--END-->
----
 
+<!--BEGIN-->
 ## Файл настроек приложения
 ВОПРОС: \
 Создал файл appsettings.json для хранения настроек файла. Какое значение нужно установить свойству Build Action ? \
@@ -355,10 +373,10 @@ https://learn.microsoft.com/en-us/dotnet/core/tools/sdk-errors/netsdk1045
 •  Copy configuration appsettings.json on build \
 •  appsettings.json not getting copied to build package \
 •  How to load app configuration from appsettings.json in MAUI startup \
-
+- - -
 <!--END-->
----
 
+<!--BEGIN-->
 ## Чтение JSON
 1) JSON:
 ```JSON
@@ -484,10 +502,10 @@ downloadPagePathSave = appSettings.downloadPagePathSave;
 
 Я надеюсь, что эта информация была полезна для вас. Если вы хотите узнать больше о библиотеке Json.NET и ее использовании, вы можете посетить следующую ссылку:
 •  [Json.NET Documentation]
-
+- - -
 <!--END-->
----
 
+<!--BEGIN-->
 ## Статический конструктор
 ```cs
 namespace Class_Static
@@ -538,9 +556,10 @@ namespace Class_Static
     }
 }
 ```
-
+- - -
 <!--END-->
----
+
+<!--BEGIN-->
 ## Creating a Visual Studio Offline Installer
 Источник: https://trailheadtechnology.com/creating-a-visual-studio-offline-installer/
 
@@ -569,10 +588,10 @@ VisualStudioSetup.**exe** --passive --norestart --includeOptional
 This will start the installation, as shown in the following screenshot. The files are not downloaded again. The installer is only checking that they are available. \
 If we open the GUI from the installer, we will see that the selected workflows were installed. \
 In a following post, I’m going to add more information about how the process can be further automated and how it can be used with Windows Sandbox (in Spanish) to create temporary clean development environments. \
-
+- - -
 <!--END-->
----
 
+<!--BEGIN-->
 ## EF Core. scaffold-DbContext
 **ВОПРОС**: C#. Дай подробные объяснения этой строке генерации классов на основании базы данных:
 *scaffold-DbContext "Строка подключения" Microsoft.EntityFrameworkCore.SqlServer -ContextDir Data -OutputDir Models\Generated -DataAnnotation -ContextNamespace ContosoPissa.Data -Namespace ContosoPizza.Models*
@@ -594,10 +613,10 @@ In a following post, I’m going to add more information about how the process c
 •  **-Namespace ContosoPizza.Models**: это параметр, который указывает пространство имен для классов сущностей. В этом случае пространство имен будет ContosoPizza.Models.
 
 Я надеюсь, что это объяснило вам смысл строки генерации классов на основании базы данных. Если у вас есть еще какие-то вопросы о C# или других темах, я буду рад ответить на них. blush
-
+- - -
 <!--END-->
----
 
+<!--BEGIN-->
 ## EF Core. scaffold-DbContext. Пространство имен -ContextNamespace и  -Namespace
 **ВОПРОС:** В чем приемущество разделения этих пространств имен:
 -ContextNamespace и  -Namespace ? \
@@ -609,8 +628,10 @@ In a following post, I’m going to add more information about how the process c
 •  **-Namespace** указывает пространство имен для классов сущностей, которые представляют таблицы и столбцы в базе данных. Обычно, классы сущностей находятся в другой папке, например Models, и имеют свое собственное пространство имен, например ContosoPizza.Models. Это помогает отделить модель данных от других частей приложения, таких как бизнес-логика, валидация, маппинг и т.д. Также, это позволяет легко использовать классы сущностей в других слоях приложения, таких как репозитории, сервисы, контроллеры и т.д., используя директиву using .
 
 Разделение пространств имен для класса DbContext и классов сущностей также помогает избежать конфликтов имен между классами, которые могут иметь одинаковые или похожие названия. Например, если вы имеете таблицу Order в базе данных, то вы можете сгенерировать класс сущности Order в пространстве имен ContosoPizza.Models. Однако, если вы также имеете контроллер OrderController в вашем приложении, то вы можете поместить его в другое пространство имен, например ContosoPizza.Controllers. Тогда вы сможете использовать оба класса без конфликтов, указывая полное имя класса или добавляя директиву using для нужного пространства имен .
-
 - - -
+<!--END-->
+
+<!--BEGIN-->
 ## EF Core. scaffold-DbContext. Ключ -DataAnnotation
 **ВОПРОС:** В чем приемущество  использования ключа  -DataAnnotation? В каких случаях рекомендуется его использовать, а в каких не рекомендуется? Приведи примеры
 
@@ -673,9 +694,10 @@ public Blog Blog { get; set; }
 // ...
 }
 ```
-
+- - -
 <!--END-->
----
+
+<!--BEGIN-->
 ## EF Core. scaffold-DbContext. Будет ли с ключем -Data Annotations по умолчанию работать каскадное удаление?
 
 С ключом -Data Annotations по умолчанию каскадное удаление **работать будет**, но только для **обязательных** связей, то есть тех, где свойство внешнего ключа не может быть null. Для **необязательных** связей, то есть тех, где свойство внешнего ключа может быть null, по умолчанию будет использоваться поведение **ClientSetNull**, которое устанавливает значение внешнего ключа в null, а не удаляет зависимые сущности \
@@ -728,10 +750,10 @@ public Blog Blog { get; set; }
 }
 ```
 Если вы не добавите атрибут [Required] к навигационному свойству или к свойству внешнего ключа, то EF Core сконфигурирует связь как необязательную и применит к ней поведение **ClientSetNull**.
-
+- - -
 <!--END-->
----
 
+<!--BEGIN-->
 ## SQL. Декартов взрыв. Картезианский взрыв. Создание таблиц и их заполнение
 
 Создание таблиц Customers и Orders:
@@ -787,7 +809,10 @@ SELECT * FROM Customers INNER JOIN Orders ON Customers.Country = Orders.Country;
 -- Пример правильного запроса с условием JOIN по полю CustomerID
 SELECT * FROM Customers INNER JOIN Orders ON Customers.CustomerID = Orders.CustomerID;
 ```
+- - -
+<!--END-->
 
+<!--BEGIN-->
 ## SQL. Декартов взрыв. Картезианский взрыв.
 
 Декартов взрыв и картезианский взрыв - это два термина, которые используются для описания проблемы производительности, возникающей при выполнении запросов SQL с использованием оператора JOIN. Эта проблема заключается в том, что при объединении двух или более таблиц с большим количеством строк результат может содержать слишком много строк, которые не нужны для решения задачи. Это приводит к избыточности данных, замедлению обработки и потере ресурсов.
@@ -852,10 +877,10 @@ CustomerID | CustomerName | Country   | OrderID | OrderDate  | Country
 3          | Charlie      | Australia | 3       | 2023-01-03 | Australia
 
 Теперь мы получаем только те строки, которые соответствуют нашей задаче.
-
----
+- - -
 <!--END-->
 
+<!--BEGIN-->
 ## SQL. Декартов взрыв. Картезианский взрыв. Выбор названия
 
 Декартов взрыв и картезианский взрыв - это два термина, которые используются для описания проблемы производительности, возникающей при выполнении запросов SQL с использованием оператора JOIN. Эта проблема заключается в том, что при объединении двух или более таблиц с большим количеством строк результат может содержать слишком много строк, которые не нужны для решения задачи. Это приводит к избыточности данных, замедлению обработки и потере ресурсов.
@@ -927,21 +952,29 @@ CustomerID | CustomerName | Country   | OrderID | OrderDate  | Country
 Название картезианский взрыв отражает тот факт, что результат JOIN увеличивается в размерах, становясь слишком большим и избыточным. Это напоминает геометрический рост, когда количество элементов удваивается или утраивается при каждом шаге.
 
 Cartesian product - Wikipedia: https://en.wikipedia.org/wiki/Cartesian_product
-
----
+- - -
 <!--END-->
 
----
+<!--BEGIN-->
+- - -
 <!--END-->
 
----
+<!--BEGIN-->
+- - -
 <!--END-->
 
----
+<!--BEGIN-->
+- - -
 <!--END-->
 
----
+<!--BEGIN-->
+- - -
 <!--END-->
 
----
+<!--BEGIN-->
+- - -
+<!--END-->
+
+<!--BEGIN-->
+- - -
 <!--END-->
