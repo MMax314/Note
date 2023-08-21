@@ -30,6 +30,8 @@
   - [Razor pages. Библиотеки визуальных компонентов](#razor-pages-библиотеки-визуальных-компонентов)
   - [Razor Pages. Как можно ограничить число знаков после запятой? \<input asp-for="value" class="form-control" type=". . .](#razor-pages-как-можно-ограничить-число-знаков-после-запятой-input-asp-forvalue-classform-control-type--)
   - [Razor Pages. Ввод даты-времени, даты](#razor-pages-ввод-даты-времени-даты)
+- [Blazor](#blazor)
+  - [Blazor. .Net8 изменения](#blazor-net8-изменения)
 
 <!-- ---------------------------------------- -->
 <!-- ---------------------------------------- -->
@@ -1001,6 +1003,10 @@ public Blog Blog { get; set; }
 <!--END-->
 
 <!--BEGIN-->
+# Blazor
+## Blazor. .Net8 изменения
+https://www.telerik.com/blogs/big-changes-coming-blazor-dotnet-8
+
 - - -
 <!--END-->
 
