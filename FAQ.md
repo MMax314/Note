@@ -15,6 +15,7 @@
   - [Чтение JSON](#чтение-json)
   - [Статический конструктор](#статический-конструктор)
   - [Создание новой записи. PK ID.](#создание-новой-записи-pk-id)
+  - [Консольное приложение. Меню выбора](#консольное-приложение-меню-выбора)
 - [SQLite](#sqlite)
   - [SQLite. Автоинкремент SQLite](#sqlite-автоинкремент-sqlite)
   - [SQLite. Если базе данных SQLite поле PK имеет тип INTEGER, то какой тип должно быть у свойства Id?](#sqlite-если-базе-данных-sqlite-поле-pk-имеет-тип-integer-то-какой-тип-должно-быть-у-свойства-id)
@@ -593,6 +594,76 @@ public string Name { get; set; }
 - - -
 <!--END-->
 
+<!--BEGIN-->
+## Консольное приложение. Меню выбора
+```cs
+static void Main(string[] args)
+{
+    Console.WriteLine("Hello, World!");
+    Console.Clear();
+
+    int[] validChoices = { 1, 2, 3 };
+    int choice = 0;
+    bool validInput = false;
+
+    while (!validInput)
+    {
+        Console.ForegroundColor = ConsoleColor.White;
+        Console.WriteLine("Выберите метод для выполнения и нажмите Enter:");
+        Console.WriteLine("1. ***");
+        Console.WriteLine("2. ---");
+        Console.WriteLine("3. Выход");
+
+        string input = Console.ReadLine();
+
+        if (int.TryParse(input, out choice))
+        {
+            if (Array.IndexOf(validChoices, choice) != -1)
+            {
+                validInput = true;
+            }
+            else
+            {
+                InvalidChoice();
+            }
+        }
+        else
+        {
+            InvalidChoice();
+        }
+    }
+
+    switch (choice)
+    {
+        case 1:
+            func_01();
+            break;
+        case 2:
+            func_02();
+            break;
+        case 3:
+            Environment.Exit(0);
+            break;
+    }
+
+    //Console.WriteLine("Goodbye, world!");
+}
+
+static void InvalidChoice()
+{
+    Console.ForegroundColor = ConsoleColor.Red;
+    Console.WriteLine("Неверный выбор. Пожалуйста, повторите попытку.");
+    Console.WriteLine("Для продолжения нажмите любую клавишу");
+    Console.ReadKey();
+    Console.Clear();
+}
+```
+- - -
+<!--END-->
+
+<!--BEGIN-->
+- - -
+<!--END-->
 <!--END_SECTION: C#-->
 
 <!--BEGIN_SECTION: SQLite-->
