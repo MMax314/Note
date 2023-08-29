@@ -35,6 +35,7 @@
   - [Razor Pages. Ввод даты-времени, даты](#razor-pages-ввод-даты-времени-даты)
 - [Blazor](#blazor)
   - [Blazor. .Net8 изменения](#blazor-net8-изменения)
+  - [Blazor. Linux. Консольное приложение](#blazor-linux-консольное-приложение)
 
 <!-- ---------------------------------------- -->
 <!-- ---------------------------------------- -->
@@ -1120,11 +1121,115 @@ public Blog Blog { get; set; }
 - - -
 <!--END-->
 
-<!--BEGIN-->
 # Blazor
+<!--BEGIN-->
 ## Blazor. .Net8 изменения
 https://www.telerik.com/blogs/big-changes-coming-blazor-dotnet-8
+- - -
+<!--END-->
 
+<!--BEGIN-->
+## Blazor. Linux. Консольное приложение
+**ВОПРОС:** Уточню вопрос. Пусть будет консольное приложение, в котором будет запускаться Web server Kestrel, на котором будет запскаться  ASP.NET Core или Blazor WebAssembly
+
+**ОТВЕТ:**
+Я понимаю ваш вопрос. Да, можно сделать консольное приложение, в котором будет запускаться веб-сервер Kestrel, на котором будет работать ASP.NET Core или Blazor WebAssembly. Для этого вам нужно выполнить следующие шаги:
+
+•  Создайте консольное приложение .NET Core с помощью команды dotnet new console.
+
+•  Добавьте пакеты NuGet для ASP.NET Core и Blazor WebAssembly с помощью команд dotnet add package Microsoft.AspNetCore.App и dotnet add package Microsoft.AspNetCore.Components.WebAssembly.Server.
+
+•  В файле Program.cs добавьте код для создания и запуска хоста веб-приложения с помощью класса WebHostBuilder. Например:
+```cs
+using System;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Hosting;
+
+namespace ConsoleApp
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            // Создаем хост веб-приложения
+            var host = new WebHostBuilder()
+            .UseKestrel() // Указываем, что используем Kestrel в качестве веб-сервера
+            .UseStartup<Startup>() // Указываем класс Startup для конфигурации приложения
+            .Build(); // Строим хост
+
+            // Запускаем хост веб-приложения
+            host.Run();
+        }
+    }
+}
+```
+
+•  В файле Startup.cs добавьте код для настройки конвейера запросов и служб приложения с помощью классов IServiceCollection и IApplicationBuilder. Например:
+```cs
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.DependencyInjection;
+
+namespace ConsoleApp
+{
+    public class Startup
+    {
+        public void ConfigureServices(IServiceCollection services)
+        {
+            // Добавляем службы для Blazor WebAssembly
+            services.AddBlazorFrameworkFiles();
+            services.AddRazorPages();
+        }
+
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        {
+            // Добавляем промежуточное ПО для обработки статических файлов и запросов к Blazor WebAssembly
+            app.UseStaticFiles();
+            app.UseBlazorFrameworkFiles();
+            app.UseRouting();
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapRazorPages(); // Маршрутизируем запросы к Razor Pages
+                endpoints.MapFallbackToFile("index.html"); // Перенаправляем все остальные запросы к файлу index.html, где загружается Blazor WebAssembly
+            });
+        }
+    }
+}
+```
+•  В папке wwwroot создайте файл index.html, который будет содержать код для загрузки Blazor WebAssembly. Например:
+```html
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Console App with Blazor WebAssembly</title>
+        <base href="/" />
+    </head>
+    <body>
+        <div id="app">Loading...</div>
+
+        <!-- Загружаем Blazor WebAssembly из пакета NuGet -->
+        <script src="_framework/blazor.webassembly.js"></script>
+    </body>
+</html>
+```
+•  В папке Pages создайте файлы Razor (.cshtml), которые будут содержать код для отображения компонентов Blazor WebAssembly. Например, создайте файл Index.cshtml с таким содержанием:
+```html
+@page "/"
+
+<h1>Hello, world!</h1>
+
+Welcome to your new app.
+
+<SurveyPrompt Title="How is Blazor working for you?" />
+```
+•  Скомпилируйте и запустите консольное приложение с помощью команды dotnet run.
+
+•  Откройте браузер и перейдите по адресу http://localhost:5000, где вы увидите ваше приложение с Blazor WebAssembly.
+
+Вы можете узнать больше о том, как создавать и развертывать приложения ASP.NET Core и Blazor WebAssembly на Linux в статьях:
+1) Размещение ASP.NET Core в операционной системе Linux с Nginx https://learn.microsoft.com/ru-ru/aspnet/core/host-and-deploy/linux-nginx?view=aspnetcore-7.0 \
+2) Размещение ASP.NET Core в операционной системе Linux с Apache https://learn.microsoft.com/ru-ru/aspnet/core/host-and-deploy/linux-apache?view=aspnetcore-7.0. Также вы можете посмотреть примеры кода для консольных приложений с Kestrel на Stack Overflow https://stackoverflow.com/questions/60090732/net-core-linux-kestrel-https-configuration.
 - - -
 <!--END-->
 
@@ -1144,6 +1249,9 @@ https://www.telerik.com/blogs/big-changes-coming-blazor-dotnet-8
 - - -
 <!--END-->
 
+<!--BEGIN-->
+- - -
+<!--END-->
 <!--BEGIN-->
 - - -
 <!--END-->
