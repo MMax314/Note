@@ -4,6 +4,7 @@
   - [Режимы Bing](#режимы-bing)
   - [Creating a Visual Studio Offline Installer](#creating-a-visual-studio-offline-installer)
   - [Квантовое шифрование](#квантовое-шифрование)
+  - [Powershell. Cкрипт. Шифровка, дешифровка текста](#powershell-cкрипт-шифровка-дешифровка-текста)
 - [C#](#c)
   - [Вывод SQL запросов в консоль DbContext.cs](#вывод-sql-запросов-в-консоль-dbcontextcs)
   - [Разница между reader.GetOrdinal("id") и reader.GetOrdinal("id")](#разница-между-readergetordinalid-и-readergetordinalid-1)
@@ -164,6 +165,51 @@ In a following post, I’m going to add more information about how the process c
 •  Высокая стоимость и сложность оборудования для генерации и детектирования квантовых объектов.
 
 Несмотря на эти трудности, квантовое шифрование является перспективным направлением развития информационной безопасности в условиях роста квантовых вычислений. Уже существуют практические реализации квантового шифрования, например, в Китае https://trends.rbc.ru/trends/industry/63a94bab9a79473b7ff5f721, Швейцарии и России. В будущем ожидается создание глобальной квантовой сети, которая будет объединять разные регионы и континенты с помощью спутников и наземных станций.
+- - -
+<!--END-->
+
+<!--BEGIN-->
+## Powershell. Cкрипт. Шифровка, дешифровка текста
+Для шифрования и расшифрования текста с помощью PowerShell можно использовать различные методы и алгоритмы. Например, можно использовать класс System.Security.Cryptography.Aes https://learn.microsoft.com/ru-ru/powershell/scripting/windows-powershell/ise/how-to-write-and-run-scripts-in-the-windows-powershell-ise?view=powershell-7.3 из .NET Framework для создания симметричного ключа шифрования и применять его к тексту с помощью методов Encrypt и Decrypt. Для этого нужно создать файл скрипта с расширением .ps1 и написать в нем код, который будет генерировать ключ, шифровать и расшифровывать текст. Вот пример такого скрипта https://habr.com/ru/companies/ruvds/articles/487876/:
+```PowerShell
+# Создаем объект AES
+$aes = New-Object System.Security.Cryptography.Aes
+
+# Генерируем случайный ключ и вектор инициализации
+$aes.GenerateKey()
+$aes.GenerateIV()
+
+# Сохраняем ключ и вектор в файлы
+$aes.Key | Out-File -FilePath "C:\temp\aes.key"
+$aes.IV | Out-File -FilePath "C:\temp\aes.iv"
+
+# Задаем текст для шифрования
+$text = "Это секретное сообщение"
+
+# Преобразуем текст в байты
+$bytes = [System.Text.Encoding]::UTF8.GetBytes($text)
+
+# Шифруем байты с помощью AES
+$encrypted = $aes.CreateEncryptor().TransformFinalBlock($bytes, 0, $bytes.Length)
+
+# Сохраняем зашифрованные байты в файл
+$encrypted | Out-File -FilePath "C:\temp\encrypted.txt"
+
+# Читаем зашифрованные байты из файла
+$encrypted = Get-Content -Path "C:\temp\encrypted.txt"
+
+# Расшифровываем байты с помощью AES
+$decrypted = $aes.CreateDecryptor().TransformFinalBlock($encrypted, 0, $encrypted.Length)
+
+# Преобразуем байты в текст
+$text = [System.Text.Encoding]::UTF8.GetString($decrypted)
+
+# Выводим расшифрованный текст на экран
+Write-Host $text
+```
+Для запуска скрипта нужно открыть PowerShell и выполнить команду .\script.ps1, где script.ps1 - имя файла скрипта. Перед этим нужно убедиться, что политика выполнения скриптов разрешает запускать не подписанные скрипты. Для этого можно использовать команду Set-ExecutionPolicy Unrestricted https://tproger.ru/translations/powershell-tutorial/.
+
+Есть и другие способы шифрования и расшифрования текста с помощью PowerShell, например, с использованием алгоритма RSA https://winitpro.ru/index.php/2019/04/03/zapusk-powershell-skripta-kak-sluzhby-windows/ или сертификата Code Signing https://winitpro.ru/index.php/2016/11/17/kak-podpisat-skript-powershell-sertifikatom/. Вы можете найти больше информации об этих методах в интернете или в документации по PowerShell. Надеюсь, что это ответило на ваш вопрос. blush
 - - -
 <!--END-->
 
