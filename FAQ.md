@@ -209,7 +209,7 @@ Write-Host $text
 ```
 Для запуска скрипта нужно открыть PowerShell и выполнить команду .\script.ps1, где script.ps1 - имя файла скрипта. Перед этим нужно убедиться, что политика выполнения скриптов разрешает запускать не подписанные скрипты. Для этого можно использовать команду Set-ExecutionPolicy Unrestricted https://tproger.ru/translations/powershell-tutorial/.
 
-Есть и другие способы шифрования и расшифрования текста с помощью PowerShell, например, с использованием алгоритма RSA https://winitpro.ru/index.php/2019/04/03/zapusk-powershell-skripta-kak-sluzhby-windows/ или сертификата Code Signing https://winitpro.ru/index.php/2016/11/17/kak-podpisat-skript-powershell-sertifikatom/. Вы можете найти больше информации об этих методах в интернете или в документации по PowerShell. Надеюсь, что это ответило на ваш вопрос. blush
+Есть и другие способы шифрования и расшифрования текста с помощью PowerShell, например, с использованием алгоритма RSA https://winitpro.ru/index.php/2019/04/03/zapusk-powershell-skripta-kak-sluzhby-windows/ или сертификата Code Signing https://winitpro.ru/index.php/2016/11/17/kak-podpisat-skript-powershell-sertifikatom/
 - - -
 <!--END-->
 
