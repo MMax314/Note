@@ -17,6 +17,8 @@
   - [Статический конструктор](#статический-конструктор)
   - [Создание новой записи. PK ID.](#создание-новой-записи-pk-id)
   - [Консольное приложение. Меню выбора](#консольное-приложение-меню-выбора)
+  - [Async - Await](#async---await)
+  - [SOLID](#solid)
 - [SQLite](#sqlite)
   - [SQLite. Автоинкремент SQLite](#sqlite-автоинкремент-sqlite)
   - [SQLite. Если базе данных SQLite поле PK имеет тип INTEGER, то какой тип должно быть у свойства Id?](#sqlite-если-базе-данных-sqlite-поле-pk-имеет-тип-integer-то-какой-тип-должно-быть-у-свойства-id)
@@ -710,8 +712,50 @@ static void InvalidChoice()
 <!--END-->
 
 <!--BEGIN-->
+## Async - Await
+* [Async and Await in C#: Full Guide](https://www.bytehide.com/blog/async-await-csharp)
+```C#
+class Program
+{
+    static async Task Main(string[] args)
+    {
+        Console.WriteLine("Main Method Started......");
+        Console.WriteLine("Before: Task<string> asdf = SomeMethod();");
+        Task<string> someMethodResult = SomeMethod();
+        Console.WriteLine("After: Task<string> asdf = SomeMethod();");
+        await someMethodResult;
+        Console.WriteLine($"result: {someMethodResult}"); ;
+        Console.WriteLine("Main Method End");
+    }
+    public async static Task<string> SomeMethod()
+    {
+        Console.WriteLine("Some Method Started......");
+        //Thread.Sleep(TimeSpan.FromSeconds(10));
+        await Task.Delay(TimeSpan.FromSeconds(10));
+        Console.WriteLine("\n");
+        Console.WriteLine("Some Method End");
+
+        return "text";
+    }
+}
+```
 - - -
 <!--END-->
+****
+<!--BEGIN-->
+## SOLID
+* [SOLID Principles in C#: A Complete Guide](https://www.bytehide.com/blog/solid-principles-in-csharp)
+- - -
+<!--END-->
+
+<!--BEGIN-->
+- - -
+<!--END-->
+
+<!--BEGIN-->
+- - -
+<!--END-->
+
 <!--END_SECTION: C#-->
 
 <!--BEGIN_SECTION: SQLite-->
