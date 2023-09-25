@@ -19,6 +19,7 @@
   - [Консольное приложение. Меню выбора](#консольное-приложение-меню-выбора)
   - [Async - Await](#async---await)
   - [SOLID](#solid)
+  - [Измерение вермени работы Stopwatch()](#измерение-вермени-работы-stopwatch)
 - [SQLite](#sqlite)
   - [SQLite. Автоинкремент SQLite](#sqlite-автоинкремент-sqlite)
   - [SQLite. Если базе данных SQLite поле PK имеет тип INTEGER, то какой тип должно быть у свойства Id?](#sqlite-если-базе-данных-sqlite-поле-pk-имеет-тип-integer-то-какой-тип-должно-быть-у-свойства-id)
@@ -715,7 +716,7 @@ static void InvalidChoice()
 ## Async - Await
 * [Async and Await in C#: Full Guide](https://www.bytehide.com/blog/async-await-csharp)
 ```C#
-class Program
+**class** Program
 {
     static async Task Main(string[] args)
     {
@@ -741,10 +742,34 @@ class Program
 ```
 - - -
 <!--END-->
-****
+
 <!--BEGIN-->
 ## SOLID
 * [SOLID Principles in C#: A Complete Guide](https://www.bytehide.com/blog/solid-principles-in-csharp)
+- - -
+<!--END-->
+
+<!--BEGIN-->
+## Измерение вермени работы Stopwatch()
+```C#
+        static void deltaTime()
+        {
+            // Создаем переменную BigInteger, которая содержит число длиной 128 знаков
+            BigInteger n = BigInteger.Parse("1234567890");
+
+            // Создаем объект Stopwatch для измерения времени выполнения операций
+            Stopwatch sw = new Stopwatch();
+
+            // Измеряем время выполнения операции извлечения корня
+            sw.Start();
+            bool root = BigInteger.IsPow2(n);
+            sw.Stop();
+            TimeSpan ts1 = sw.Elapsed; // Сохраняем затраченное время в переменную ts1
+            sw.Reset(); // Сбрасываем счетчик времени
+
+            Console.WriteLine($"timeSpan={ts1}");
+        }
+```
 - - -
 <!--END-->
 
