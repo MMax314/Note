@@ -19,7 +19,7 @@
   - [Консольное приложение. Меню выбора](#консольное-приложение-меню-выбора)
   - [Async - Await](#async---await)
   - [SOLID](#solid)
-  - [Измерение вермени работы Stopwatch()](#измерение-вермени-работы-stopwatch)
+  - [Измерение времени работы Stopwatch()](#измерение-времени-работы-stopwatch)
 - [SQLite](#sqlite)
   - [SQLite. Автоинкремент SQLite](#sqlite-автоинкремент-sqlite)
   - [SQLite. Если базе данных SQLite поле PK имеет тип INTEGER, то какой тип должно быть у свойства Id?](#sqlite-если-базе-данных-sqlite-поле-pk-имеет-тип-integer-то-какой-тип-должно-быть-у-свойства-id)
@@ -750,7 +750,7 @@ static void InvalidChoice()
 <!--END-->
 
 <!--BEGIN-->
-## Измерение вермени работы Stopwatch()
+## Измерение времени работы Stopwatch()
 ```C#
         static void deltaTime()
         {
