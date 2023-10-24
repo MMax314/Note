@@ -5,6 +5,7 @@
   - [Creating a Visual Studio Offline Installer](#creating-a-visual-studio-offline-installer)
   - [Квантовое шифрование](#квантовое-шифрование)
   - [Powershell. Cкрипт. Шифровка, дешифровка текста](#powershell-cкрипт-шифровка-дешифровка-текста)
+  - [Контрольная сумма MD5, SHA](#контрольная-сумма-md5-sha)
 - [C#](#c)
   - [Вывод SQL запросов в консоль DbContext.cs](#вывод-sql-запросов-в-консоль-dbcontextcs)
   - [Разница между reader.GetOrdinal("id") и reader.GetOrdinal("id")](#разница-между-readergetordinalid-и-readergetordinalid-1)
@@ -40,6 +41,8 @@
 - [Blazor](#blazor)
   - [Blazor. .Net8 изменения](#blazor-net8-изменения)
   - [Blazor. Linux. Консольное приложение](#blazor-linux-консольное-приложение)
+- [React](#react)
+  - [npm](#npm)
 
 <!-- ---------------------------------------- -->
 <!-- ---------------------------------------- -->
@@ -215,6 +218,33 @@ Write-Host $text
 Есть и другие способы шифрования и расшифрования текста с помощью PowerShell, например, с использованием алгоритма RSA https://winitpro.ru/index.php/2019/04/03/zapusk-powershell-skripta-kak-sluzhby-windows/ или сертификата Code Signing https://winitpro.ru/index.php/2016/11/17/kak-podpisat-skript-powershell-sertifikatom/
 - - -
 <!--END-->
+
+<!--BEGIN-->
+## Контрольная сумма MD5, SHA
+MD2, MD4, MD5, SHA1, SHA256, SHA384, SHA512
+```sh
+CertUtil.exe -hashfile "c:\work\!_text.txt" MD2 >>crc.txt
+```
+- - -
+<!--END-->
+
+<!--BEGIN-->
+- - -
+<!--END-->
+
+<!--BEGIN-->
+- - -
+<!--END-->
+
+<!--BEGIN-->
+- - -
+<!--END-->
+
+<!--BEGIN-->
+- - -
+<!--END-->
+
+<!--END_SECTION: Разное-->
 
 <!--BEGIN_SECTION: C#-->
 # C#
@@ -1236,6 +1266,7 @@ public Blog Blog { get; set; }
 - - -
 <!--END-->
 
+<!--Begin_SECTION: Blazor-->
 # Blazor
 <!--BEGIN-->
 ## Blazor. .Net8 изменения
@@ -1351,6 +1382,18 @@ Welcome to your new app.
 <!--BEGIN-->
 - - -
 <!--END-->
+<!--End_SECTION: Blazor-->
+
+
+<!--Begin_SECTION: React-->
+
+# React
+<!--BEGIN-->
+## npm
+*System > About > Advanced system settings > Enviroment Variables > System Variables > Path* \
+**Добавить:** C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VisualStudio\NodeJs
+- - -
+<!--END-->
 
 <!--BEGIN-->
 - - -
@@ -1367,6 +1410,6 @@ Welcome to your new app.
 <!--BEGIN-->
 - - -
 <!--END-->
-<!--BEGIN-->
-- - -
-<!--END-->
+
+<!--End_SECTION: React-->
+
