@@ -6,6 +6,7 @@
   - [Квантовое шифрование](#квантовое-шифрование)
   - [Powershell. Cкрипт. Шифровка, дешифровка текста](#powershell-cкрипт-шифровка-дешифровка-текста)
   - [Контрольная сумма MD5, SHA](#контрольная-сумма-md5-sha)
+  - [SSD](#ssd)
 - [C#](#c)
   - [Вывод SQL запросов в консоль DbContext.cs](#вывод-sql-запросов-в-консоль-dbcontextcs)
   - [Разница между reader.GetOrdinal("id") и reader.GetOrdinal("id")](#разница-между-readergetordinalid-и-readergetordinalid-1)
@@ -25,7 +26,7 @@
   - [SQLite. Автоинкремент SQLite](#sqlite-автоинкремент-sqlite)
   - [SQLite. Если базе данных SQLite поле PK имеет тип INTEGER, то какой тип должно быть у свойства Id?](#sqlite-если-базе-данных-sqlite-поле-pk-имеет-тип-integer-то-какой-тип-должно-быть-у-свойства-id)
 - [SQL](#sql)
-  - [Use Cases for Non-Equi JOINs (неравноправные соединения)](#use-cases-for-non-equi-joins-неравноправные-соединения)
+  - [SQL. Use Cases for Non-Equi JOINs (неравноправные соединения)](#sql-use-cases-for-non-equi-joins-неравноправные-соединения)
   - [SQL. Декартов взрыв. Картезианский взрыв. Выбор названия](#sql-декартов-взрыв-картезианский-взрыв-выбор-названия)
   - [SQL. Декартов взрыв. Картезианский взрыв. Создание таблиц и их заполнение](#sql-декартов-взрыв-картезианский-взрыв-создание-таблиц-и-их-заполнение)
   - [SQL. Декартов взрыв. Картезианский взрыв.](#sql-декартов-взрыв-картезианский-взрыв)
@@ -42,7 +43,10 @@
   - [Blazor. .Net8 изменения](#blazor-net8-изменения)
   - [Blazor. Linux. Консольное приложение](#blazor-linux-консольное-приложение)
 - [React](#react)
-  - [npm](#npm)
+  - [TypeScript](#typescript)
+  - [React. Npm](#react-npm)
+  - [Ошибка при создании проекта React:](#ошибка-при-создании-проекта-react)
+  - [Создание приложения](#создание-приложения)
 
 <!-- ---------------------------------------- -->
 <!-- ---------------------------------------- -->
@@ -229,6 +233,9 @@ CertUtil.exe -hashfile "c:\work\!_text.txt" MD2 >>crc.txt
 <!--END-->
 
 <!--BEGIN-->
+## SSD
+1) [Download Software, Firmware and Drivers for WD Products](https://support-en.wd.com/app/answers/detailweb/a_id/10346#gs=eyJndWlkZUlEIjozMDgsInF1ZXN0aW9uSUQiOjEsInJlc3BvbnNlSUQiOjEsImd1aWRlU2Vzc2lvbiI6IjZlOE9icGxxIiwic2Vzc2lvbklEIjoiZWVFRWJwbHEifQ)
+2) [Download Dashboard](https://wddashboarddownloads.wdc.com/wdDashboard/DashboardSetup.exe)
 - - -
 <!--END-->
 
@@ -776,6 +783,8 @@ static void InvalidChoice()
 <!--BEGIN-->
 ## SOLID
 * [SOLID Principles in C#: A Complete Guide](https://www.bytehide.com/blog/solid-principles-in-csharp)
+  
+* [Youtube - The SOLID Principles - Klaus Iglberger - CppCon 2020](https://www.youtube.com/watch?v=Ntraj80qN2k)
 - - -
 <!--END-->
 
@@ -847,7 +856,7 @@ static void InvalidChoice()
 <!--END-->
 
 <!--BEGIN-->
-## Use Cases for Non-Equi JOINs (неравноправные соединения)
+## SQL. Use Cases for Non-Equi JOINs (неравноправные соединения)
 https://learnsql.com/blog/sql-non-equi-joins-examples/
 - - -
 <!--END-->
@@ -1389,17 +1398,52 @@ Welcome to your new app.
 
 # React
 <!--BEGIN-->
-## npm
+## TypeScript
+**TypeScript шпаргалка:** https://www.dev-notes.ru/articles/typescript/typescript-cheatsheet/ \
+(*Источник Eng:* https://cs.fyi/guide/typescript-cheatsheet)
+- - -
+<!--END-->
+
+<!--BEGIN-->
+## React. Npm
+
 *System > About > Advanced system settings > Enviroment Variables > System Variables > Path* \
-**Добавить:** C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VisualStudio\NodeJs
+ИЛИ \
+*Start > Edit the system environment variables*
+
+**Добавить путь к каталогу:**
+* C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VisualStudio\NodeJs
+* C:\Program Files\nodejs
 - - -
 <!--END-->
 
 <!--BEGIN-->
+## Ошибка при создании проекта React:
+NPX no such file or directory, lstat 'C:\Users\<user>\AppData\Roaming\npm'
+Node.js/Windows error: ENOENT, stat 'C:\Users\RT\AppData\Roaming\npm'
+* https://www.youtube.com/watch?v=UwY6U7L10lg \
+* https://stackoverflow.com/questions/25093276/node-js-windows-error-enoent-stat-c-users-rt-appdata-roaming-npm
+
+ **Решение:** npm install npm -g
 - - -
 <!--END-->
 
 <!--BEGIN-->
+## Создание приложения
+**Terminal:** node -v\
+**Расширение для форматирования кода:** Prettier - Code format \
+**Форматирование при сохранении:** Preferences: Open User Settings ===> Format On Save \
+
+**Создание приложения:**
+* Create React APP (CRA)
+* Vite
+    * Terminal: **npm create vite@latest** ( npm create vite@4.1.0 )
+    * Project name: react-app
+    * Select a framework
+    * Terminal: **cd react-app** (Переходим в каталог)
+    * Terminal: **npm install** (npm i)
+    * Terminal: **code .** (Открытие каталога в VS)
+    * Terminal: **npm run dev** (Запуск проекта)
 - - -
 <!--END-->
 
