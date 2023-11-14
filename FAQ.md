@@ -43,7 +43,7 @@
   - [Blazor. .Net8 изменения](#blazor-net8-изменения)
   - [Blazor. Linux. Консольное приложение](#blazor-linux-консольное-приложение)
 - [React](#react)
-  - [TypeScript](#typescript)
+  - [React. TypeScript](#react-typescript)
   - [React. Npm](#react-npm)
   - [React. Ошибка при создании проекта React:](#react-ошибка-при-создании-проекта-react)
   - [React. Создание приложения](#react-создание-приложения)
@@ -1398,7 +1398,7 @@ Welcome to your new app.
 
 # React
 <!--BEGIN-->
-## TypeScript
+## React. TypeScript
 **TypeScript шпаргалка:** https://www.dev-notes.ru/articles/typescript/typescript-cheatsheet/ \
 (*Источник Eng:* https://cs.fyi/guide/typescript-cheatsheet)
 - - -
