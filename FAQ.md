@@ -45,8 +45,8 @@
 - [React](#react)
   - [TypeScript](#typescript)
   - [React. Npm](#react-npm)
-  - [Ошибка при создании проекта React:](#ошибка-при-создании-проекта-react)
-  - [Создание приложения](#создание-приложения)
+  - [React. Ошибка при создании проекта React:](#react-ошибка-при-создании-проекта-react)
+  - [React. Создание приложения](#react-создание-приложения)
 
 <!-- ---------------------------------------- -->
 <!-- ---------------------------------------- -->
@@ -1418,7 +1418,7 @@ Welcome to your new app.
 <!--END-->
 
 <!--BEGIN-->
-## Ошибка при создании проекта React:
+## React. Ошибка при создании проекта React:
 NPX no such file or directory, lstat 'C:\Users\<user>\AppData\Roaming\npm'
 Node.js/Windows error: ENOENT, stat 'C:\Users\RT\AppData\Roaming\npm'
 * https://www.youtube.com/watch?v=UwY6U7L10lg \
@@ -1429,7 +1429,7 @@ Node.js/Windows error: ENOENT, stat 'C:\Users\RT\AppData\Roaming\npm'
 <!--END-->
 
 <!--BEGIN-->
-## Создание приложения
+## React. Создание приложения
 **Terminal:** node -v\
 **Расширение для форматирования кода:** Prettier - Code format \
 **Форматирование при сохранении:** Preferences: Open User Settings ===> Format On Save \
