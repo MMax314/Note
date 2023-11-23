@@ -7,7 +7,9 @@
   - [Powershell. Cкрипт. Шифровка, дешифровка текста](#powershell-cкрипт-шифровка-дешифровка-текста)
   - [Контрольная сумма MD5, SHA](#контрольная-сумма-md5-sha)
   - [SSD](#ssd)
-- [C#](#c)
+- [C++](#c)
+  - [C++. Список файлов/каталогов](#c-список-файловкаталогов)
+- [C#](#c-1)
   - [Вывод SQL запросов в консоль DbContext.cs](#вывод-sql-запросов-в-консоль-dbcontextcs)
   - [Разница между reader.GetOrdinal("id") и reader.GetOrdinal("id")](#разница-между-readergetordinalid-и-readergetordinalid-1)
   - [Генерация GUID в Visual Studio. Hot keys](#генерация-guid-в-visual-studio-hot-keys)
@@ -252,6 +254,43 @@ CertUtil.exe -hashfile "c:\work\!_text.txt" MD2 >>crc.txt
 <!--END-->
 
 <!--END_SECTION: Разное-->
+
+<!--BEGIN_SECTION: C++-->
+# C++
+<!--BEGIN-->
+## C++. Список файлов/каталогов
+```C++
+	AnsiString pathCsvIn = "C:\\Temp";
+
+	//namespace fs = std::filesystem;
+	//#include <filesystem> //std::filesystem::directory_iterator
+	for (const auto & entry : std::filesystem::directory_iterator(pathCsvIn.c_str()))
+	{
+		if ( (std::filesystem::is_directory(entry.path())) == true )
+		{
+			//Каталог
+		} else if (entry.path().extension().empty()) {
+			//Файл
+		} else if ( (std::filesystem::is_regular_file(entry.path())) == true ) {
+			//Проверка на нужное расширение
+			if ( UpperCase(entry.path().extension().c_str()) == UpperCase(".csv") )
+			{
+				Memo->Lines->Add(entry.path().c_str());
+			}
+		}
+	}
+```
+- - -
+<!--END-->
+
+<!--BEGIN-->
+- - -
+<!--END-->
+
+<!--BEGIN-->
+- - -
+<!--END-->
+<!--END_SECTION: C++-->
 
 <!--BEGIN_SECTION: C#-->
 # C#
