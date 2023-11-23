@@ -10,20 +10,20 @@
 - [C++](#c)
   - [C++. Список файлов/каталогов](#c-список-файловкаталогов)
 - [C#](#c-1)
-  - [Вывод SQL запросов в консоль DbContext.cs](#вывод-sql-запросов-в-консоль-dbcontextcs)
-  - [Разница между reader.GetOrdinal("id") и reader.GetOrdinal("id")](#разница-между-readergetordinalid-и-readergetordinalid-1)
-  - [Генерация GUID в Visual Studio. Hot keys](#генерация-guid-в-visual-studio-hot-keys)
-  - [Получить список установленных версий .NET с помощью команды](#получить-список-установленных-версий-net-с-помощью-команды)
-  - [Как получить занчения поля по его имени? var reader = command.ExecuteReader();](#как-получить-занчения-поля-по-его-имени-var-reader--commandexecutereader)
-  - [Публикация в Telegram](#публикация-в-telegram)
-  - [Файл настроек приложения](#файл-настроек-приложения)
-  - [Чтение JSON](#чтение-json)
-  - [Статический конструктор](#статический-конструктор)
-  - [Создание новой записи. PK ID.](#создание-новой-записи-pk-id)
-  - [Консольное приложение. Меню выбора](#консольное-приложение-меню-выбора)
-  - [Async - Await](#async---await)
-  - [SOLID](#solid)
-  - [Измерение времени работы Stopwatch()](#измерение-времени-работы-stopwatch)
+  - [C#. Вывод SQL запросов в консоль DbContext.cs](#c-вывод-sql-запросов-в-консоль-dbcontextcs)
+  - [C#. Разница между reader.GetOrdinal("id") и reader.GetOrdinal("id")](#c-разница-между-readergetordinalid-и-readergetordinalid)
+  - [C#. Генерация GUID в Visual Studio. Hot keys](#c-генерация-guid-в-visual-studio-hot-keys)
+  - [C#. Получить список установленных версий .NET с помощью команды](#c-получить-список-установленных-версий-net-с-помощью-команды)
+  - [C#. Как получить занчения поля по его имени? var reader = command.ExecuteReader();](#c-как-получить-занчения-поля-по-его-имени-var-reader--commandexecutereader)
+  - [C#. Публикация в Telegram](#c-публикация-в-telegram)
+  - [C#. Файл настроек приложения](#c-файл-настроек-приложения)
+  - [C#. Чтение JSON](#c-чтение-json)
+  - [C#. Статический конструктор](#c-статический-конструктор)
+  - [C#. Создание новой записи. PK ID.](#c-создание-новой-записи-pk-id)
+  - [C#. Консольное приложение. Меню выбора](#c-консольное-приложение-меню-выбора)
+  - [C#. Async - Await](#c-async---await)
+  - [C#. SOLID](#c-solid)
+  - [C#. Измерение времени работы Stopwatch()](#c-измерение-времени-работы-stopwatch)
 - [SQLite](#sqlite)
   - [SQLite. Автоинкремент SQLite](#sqlite-автоинкремент-sqlite)
   - [SQLite. Если базе данных SQLite поле PK имеет тип INTEGER, то какой тип должно быть у свойства Id?](#sqlite-если-базе-данных-sqlite-поле-pk-имеет-тип-integer-то-какой-тип-должно-быть-у-свойства-id)
@@ -295,7 +295,7 @@ CertUtil.exe -hashfile "c:\work\!_text.txt" MD2 >>crc.txt
 <!--BEGIN_SECTION: C#-->
 # C#
 <!--BEGIN-->
-## Вывод SQL запросов в консоль DbContext.cs
+## C#. Вывод SQL запросов в консоль DbContext.cs
 
 ```cs
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -306,7 +306,7 @@ CertUtil.exe -hashfile "c:\work\!_text.txt" MD2 >>crc.txt
 <!--END-->
 
 <!--BEGIN-->
-## Разница между reader.GetOrdinal("id") и reader.GetOrdinal("id")
+## C#. Разница между reader.GetOrdinal("id") и reader.GetOrdinal("id")
 Разница между reader["id"] и reader.GetOrdinal("id") в том, что первый вариант использует индексатор, который внутри вызывает метод GetValue с индексом, полученным из метода GetOrdinal https://stackoverflow.com/questions/31742331/how-to-properly-read-data-from-sqldatareader-in-c. \
  То есть, reader["id"] эквивалентен reader.GetValue(reader.GetOrdinal("id")). Второй вариант просто возвращает индекс колонки по ее имени, без получения значения. \
  Если ты хочешь получить значение из reader по имени колонки, то ты можешь использовать любой из этих вариантов, но первый более краткий и читабельный. Однако, если ты хочешь повысить производительность, то ты можешь сохранить индекс колонки в переменную вне цикла и использовать его для получения значения: \ 
@@ -332,7 +332,7 @@ var id = reader.GetInt32(idIndex);
 <!--END-->
 
 <!--BEGIN-->
-## Генерация GUID в Visual Studio. Hot keys
+## C#. Генерация GUID в Visual Studio. Hot keys
 Нет одной универсальной комбинации горячих клавиш для генерации GUID, так как это зависит от того, какой инструмент или расширение ты используешь для этой цели. Но вот некоторые примеры, которые я нашел в интернете: \
 •  Если ты используешь внешний инструмент PowerShell, как я описал ранее, то ты можешь назначить ему любую свободную комбинацию горячих клавиш в меню *Инструменты -> Параметры -> Среда ->Клавиатура*, выбрав команду *Tools.ExternalCommandX*, где X - номер инструмента в списке https://www.tenforums.com/tutorials/130522-generate-globally-unique-identifier-guid-windows.html. \
 •  Если ты используешь расширение Visual Commander, то ты можешь назначить ему любую свободную комбинацию горячих клавиш в меню *Инструменты -> Параметры -> Среда ->Клавиатура*, выбрав команду VCmd.CommandX, где X - номер команды в списке https://stackoverflow.com/questions/58634771/generating-a-plain-guid-in-visual-studio. \
@@ -342,7 +342,7 @@ var id = reader.GetInt32(idIndex);
 <!--END-->
 
 <!--BEGIN-->
-## Получить список установленных версий .NET с помощью команды
+## C#. Получить список установленных версий .NET с помощью команды
 
 dotnet --list-sdks
 https://learn.microsoft.com/en-us/dotnet/core/tools/sdk-errors/netsdk1045
@@ -350,7 +350,7 @@ https://learn.microsoft.com/en-us/dotnet/core/tools/sdk-errors/netsdk1045
 <!--END-->
 
 <!--BEGIN-->
-## Как получить занчения поля по его имени? var reader = command.ExecuteReader();
+## C#. Как получить занчения поля по его имени? var reader = command.ExecuteReader();
 ```cs
 using (var connection = new SqliteConnection(connectionString))
 {
@@ -422,7 +422,7 @@ while (reader.Read())
 <!--END-->
 
 <!--BEGIN-->
-## Публикация в Telegram
+## C#. Публикация в Telegram
 **ВОПРОСЫ:**
 1) Что нужно для того, чтобы приложение самостоятельно публиковало сообщения в своем канале Telegram?
 2) Есть ли пример программы на C#, которая автоматически отправляет сообщения в Telegram?
@@ -470,7 +470,7 @@ namespace TelegramBotExample
 <!--END-->
 
 <!--BEGIN-->
-## Файл настроек приложения
+## C#. Файл настроек приложения
 ВОПРОС: \
 Создал файл appsettings.json для хранения настроек файла. Какое значение нужно установить свойству Build Action ? \
 
@@ -493,7 +493,7 @@ namespace TelegramBotExample
 <!--END-->
 
 <!--BEGIN-->
-## Чтение JSON
+## C#. Чтение JSON
 1) JSON:
 ```JSON
 {
@@ -622,7 +622,7 @@ downloadPagePathSave = appSettings.downloadPagePathSave;
 <!--END-->
 
 <!--BEGIN-->
-## Статический конструктор
+## C#. Статический конструктор
 ```cs
 namespace Class_Static
 {
@@ -676,7 +676,7 @@ namespace Class_Static
 <!--END-->
 
 <!--BEGIN-->
-## Создание новой записи. PK ID.
+## C#. Создание новой записи. PK ID.
 **Вопрос:** Проект: *** \
 Файл создания Actors:
 1) /Actors/Create.cshtml
@@ -722,7 +722,7 @@ public string Name { get; set; }
 <!--END-->
 
 <!--BEGIN-->
-## Консольное приложение. Меню выбора
+## C#. Консольное приложение. Меню выбора
 ```cs
 static void Main(string[] args)
 {
@@ -789,7 +789,7 @@ static void InvalidChoice()
 <!--END-->
 
 <!--BEGIN-->
-## Async - Await
+## C#. Async - Await
 * [Async and Await in C#: Full Guide](https://www.bytehide.com/blog/async-await-csharp)
 ```C#
 **class** Program
@@ -820,7 +820,7 @@ static void InvalidChoice()
 <!--END-->
 
 <!--BEGIN-->
-## SOLID
+## C#. SOLID
 * [SOLID Principles in C#: A Complete Guide](https://www.bytehide.com/blog/solid-principles-in-csharp)
   
 * [Youtube - The SOLID Principles - Klaus Iglberger - CppCon 2020](https://www.youtube.com/watch?v=Ntraj80qN2k)
@@ -828,7 +828,7 @@ static void InvalidChoice()
 <!--END-->
 
 <!--BEGIN-->
-## Измерение времени работы Stopwatch()
+## C#. Измерение времени работы Stopwatch()
 ```C#
         static void deltaTime()
         {
