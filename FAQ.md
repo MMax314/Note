@@ -5,6 +5,8 @@
   - [Creating a Visual Studio Offline Installer](#creating-a-visual-studio-offline-installer)
   - [Квантовое шифрование](#квантовое-шифрование)
   - [Powershell. Cкрипт. Шифровка, дешифровка текста](#powershell-cкрипт-шифровка-дешифровка-текста)
+  - [PowerShell. Объединение всех текстовых файлов из каталога в один файл](#powershell-объединение-всех-текстовых-файлов-из-каталога-в-один-файл)
+  - [PowerShell. Разархивирование архивов из каталога](#powershell-разархивирование-архивов-из-каталога)
   - [Контрольная сумма MD5, SHA](#контрольная-сумма-md5-sha)
   - [SSD](#ssd)
 - [C++](#c)
@@ -224,6 +226,45 @@ Write-Host $text
 Есть и другие способы шифрования и расшифрования текста с помощью PowerShell, например, с использованием алгоритма RSA https://winitpro.ru/index.php/2019/04/03/zapusk-powershell-skripta-kak-sluzhby-windows/ или сертификата Code Signing https://winitpro.ru/index.php/2016/11/17/kak-podpisat-skript-powershell-sertifikatom/
 - - -
 <!--END-->
+
+<!-- BEGIN -->
+## PowerShell. Объединение всех текстовых файлов из каталога в один файл
+
+```bash
+#-----------------------------------------------
+#Объединение всех текстовых файлов из каталога в один файл
+#-----------------------------------------------
+$dir = "C:\\Work\\1"
+$outputFile = "C:\\Work\\1\\!_All_Data.csv"
+
+# Получите все файлы .csv в каталоге
+$files = Get-ChildItem -Path $dir -Filter *.csv
+
+# Объедините все файлы в один
+foreach ($file in $files)
+{
+    Get-Content -LiteralPath $file.FullName | Add-Content $outputFile
+}
+```
+- - -
+<!-- END -->
+
+<!-- BEGIN -->
+## PowerShell. Разархивирование архивов из каталога
+
+```bash
+#------------------------------------
+#Разархивирование архивов из каталога
+#------------------------------------
+$dir = "C:\\Work"
+$files = Get-ChildItem -Path $dir -Filter *.7z
+
+foreach ($file in $files) {
+    & "C:\Program Files\7-Zip\7z.exe" x $file.FullName "*one*" "*two*"
+}
+```
+- - -
+<!-- END -->
 
 <!--BEGIN-->
 ## Контрольная сумма MD5, SHA
