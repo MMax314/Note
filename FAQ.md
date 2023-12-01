@@ -11,6 +11,7 @@
   - [SSD](#ssd)
 - [C++](#c)
   - [C++. Список файлов/каталогов](#c-список-файловкаталогов)
+  - [C++. TStringList разбиение по строкам с использованием разделителя. Игнорирование пробела.](#c-tstringlist-разбиение-по-строкам-с-использованием-разделителя-игнорирование-пробела)
 - [C#](#c-1)
   - [C#. Вывод SQL запросов в консоль DbContext.cs](#c-вывод-sql-запросов-в-консоль-dbcontextcs)
   - [C#. Разница между reader.GetOrdinal("id") и reader.GetOrdinal("id")](#c-разница-между-readergetordinalid-и-readergetordinalid)
@@ -325,6 +326,25 @@ CertUtil.exe -hashfile "c:\work\!_text.txt" MD2 >>crc.txt
 <!--END-->
 
 <!--BEGIN-->
+## C++. TStringList разбиение по строкам с использованием разделителя. Игнорирование пробела.
+`TStringList` имеет свойство `Delimiter`, установленное в `';'`. Однако, `TStringList` также имеет свойство `DelimitedText`, которое автоматически разбивает строку на подстроки, используя `Delimiter` и пробелы¹².
+
+По умолчанию, `DelimitedText` считает пробелы разделителями, в дополнение к символу, указанному в `Delimiter`¹². Это означает, что если в строке есть пробелы, `DelimitedText` разобьет строку на подстроки по этим пробелам, а также по символу `';'`.
+
+Чтобы `DelimitedText` разбивал строку только по символу `';'`, и игнорировал пробелы, нужно установить свойство `StrictDelimiter` в `true` перед установкой `DelimitedText`¹²:
+
+```cpp
+TStringList *row = new TStringList;
+row->Delimiter = ';';
+row->StrictDelimiter = true;  // Игнорировать пробелы
+row->DelimitedText = fileContent->Strings[i];
+```
+
+[(1) System.Classes.TStringList - RAD Studio API Documentation.](https://docwiki.embarcadero.com/Libraries/Sydney/en/System.Classes.TStringList) \
+[(2) StrUtils.SplitString not working as expected - Stack Overflow.](https://stackoverflow.com/questions/35840707/strutils-splitstring-not-working-as-expected) \
+[(3) System.SysUtils.TStringHelper.Split - RAD Studio API Documentation.](https://docwiki.embarcadero.com/Libraries/Alexandria/en/System.SysUtils.TStringHelper.Split) \
+[(4) Split a string into an array of strings based on a delimiter.]( https://stackoverflow.com/questions/2625707/split-a-string-into-an-array-of-strings-based-on-a-delimiter) \
+[(5) System.Classes.TStrings.LineBreak - RAD Studio API Documentation.](https://docwiki.embarcadero.com/Libraries/Sydney/en/System.Classes.TStrings.LineBreak)
 - - -
 <!--END-->
 
