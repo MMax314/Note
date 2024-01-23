@@ -12,6 +12,7 @@
   - [Контрольная сумма MD5, SHA](#-md5-sha)
   - [SSD](#ssd)
 - [C++](#c)
+  - [C++. ModBus. Два регистра во float](#c.-modbus.-float)
   - [C++. Список файлов/каталогов](#c.-)
   - [C++. TStringList разбиение текста по строкам с использованием разделителя. Игнорирование пробела.](#c.-tstringlist-.-.)
 - [C#](#c)
@@ -293,6 +294,28 @@ CertUtil.exe -hashfile "c:\work\!_text.txt" MD2 >>crc.txt
 
 <!--BEGIN_SECTION: C++-->
 # C++
+<!--BEGIN-->
+## C++. ModBus. Два регистра во float
+3. Описание формата с плавающей точкой IEEE 754 32-bit\
+Формат с плавающей точкой IEEE 754 передается в двух регистрах Modbus.\
+Алгоритм преобразования значения из пары регистров Modbus в значения с
+плавающей точкой (для Microsoft Visual Studio):\
+
+```C++
+  int wReg1 = 0;
+  int wReg2 = 16078;
+
+  DWORD wReg = wReg1 | (wReg2 << 16);
+  float fV;
+  memcpy( &fV, &wReg, sizeof(float) );
+
+  // fV = 0,4 (приблизительно)
+```
+
+[Источник](http://signalrp.ru/catalog/vope-v1/Modbus_RTU_v1.4.pdf)
+- - - - -
+<!--END-->
+
 <!--BEGIN-->
 ## C++. Список файлов/каталогов
 ```C++
