@@ -11,6 +11,7 @@
   - [Контрольная сумма MD5, SHA](#контрольная-сумма-md5-sha)
   - [SSD](#ssd)
 - [C++](#c)
+  - [C++. ModBus. Контрольная сумма. CRC-16 / ModBus](#c-modbus-контрольная-сумма-crc-16--modbus)
   - [C++. ModBus. Два регистра во float](#c-modbus-два-регистра-во-float)
   - [C++. Список файлов/каталогов](#c-список-файловкаталогов)
   - [C++. TStringList разбиение текста по строкам с использованием разделителя. Игнорирование пробела.](#c-tstringlist-разбиение-текста-по-строкам-с-использованием-разделителя-игнорирование-пробела)
@@ -292,6 +293,48 @@ CertUtil.exe -hashfile "c:\work\!_text.txt" MD2 >>crc.txt
 
 <!--BEGIN_SECTION: C++-->
 # C++
+<!--BEGIN-->
+## C++. ModBus. Контрольная сумма. CRC-16 / ModBus
+```C++
+unsigned int TForm1::calculateModbusCRC16Checksum(const unsigned char* data, unsigned int length)
+{
+  /*
+    //Проверка: https://crccalc.com/
+    //Алгоритм: CRC-16/MODBUS
+    //Запрос: 0x00 0x03 0x00 0x79 0x00 0x02
+    //Результат: CRC=0x0314; CRC Lo=0x14; CRC Hi=0x03
+    unsigned char request[8] = {0x00, 0x03, 0x00, 0x79, 0x00, 0x02, 0x00, 0x00};  // Extra two bytes for CRC
+    unsigned int crc = calculateCRC16_Modbus(request, sizeof(request) - 2);  // Calculate CRC for the first 6 bytes
+
+    // Add CRC to the request
+    request[6] = crc & 0xFF;  // CRC Lo
+    request[7] = (crc >> 8) & 0xFF;  // CRC Hi
+  */
+
+  unsigned int crc = 0xFFFF;
+  for (unsigned int pos = 0; pos < length; pos++)
+  {
+      crc ^= (unsigned int)data[pos];  // XOR byte into least significant byte of crc
+      for (int i = 8; i != 0; i--)
+      {  // Loop over each bit
+          if ((crc & 0x0001) != 0)
+          {  // If the LSB is set
+              crc >>= 1;  // Shift right and XOR 0xA001
+              crc ^= 0xA001;
+          } else {
+            // Else LSB is not set
+            crc >>= 1;  // Just shift right
+          }//if
+      }//for
+  }//for
+
+  // Note, this number has low and high bytes swapped, so use it accordingly (or swap bytes)
+  return crc;
+}
+```
+- - -
+<!--END-->
+
 <!--BEGIN-->
 ## C++. ModBus. Два регистра во float
 3. Описание формата с плавающей точкой IEEE 754 32-bit\
