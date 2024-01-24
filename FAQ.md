@@ -11,6 +11,7 @@
   - [Контрольная сумма MD5, SHA](#контрольная-сумма-md5-sha)
   - [SSD](#ssd)
 - [C++](#c)
+  - [C++. ModBus. modpool.exe Адресация](#c-modbus-modpoolexe-адресация)
   - [C++. ModBus. Контрольная сумма. CRC-16 / ModBus](#c-modbus-контрольная-сумма-crc-16--modbus)
   - [C++. ModBus. Два регистра во float](#c-modbus-два-регистра-во-float)
   - [C++. Список файлов/каталогов](#c-список-файловкаталогов)
@@ -293,6 +294,26 @@ CertUtil.exe -hashfile "c:\work\!_text.txt" MD2 >>crc.txt
 
 <!--BEGIN_SECTION: C++-->
 # C++
+<!--BEGIN-->
+## C++. ModBus. modpool.exe Адресация
+
+```bash
+modpoll.exe -m rtu -a 1 -r 0x0079 -c 2 -b 9600 -d 8 -s 1 -p none COM3
+```
+Отправленный запрос (SerialPort): *01 03 00 **78** 00 02 44 12*
+
+В протоколе Modbus адреса регистров обычно начинаются с 1, а не с 0¹². 
+Поэтому, когда вы указываете адрес регистра как `0x0079`, он соответствует регистру `0x0078` в запросе Modbus¹². Это известно как "**адресация PDU**", и она является стандартной для протокола Modbus¹².
+
+Команда `modpoll` генерирует запрос Modbus RTU для чтения двух регистров, начиная с адреса `0x0078` (или `0x0079` в адресации PDU), от устройства с ID 1 на порту COM3¹². Это объясняет, почему вы видите `01 03 00 78 00 02` в начале вашего запроса¹².
+
+(1) Free Modbus Master Simulator and Test Tool. https://www.modbusdriver.com/modpoll.html.\
+(2) Modbus Poll user manual - modbus tools. https://www.modbustools.com/mbpoll-user-manual.html.\
+(3) Modbus Software - Mbpoll / Modpoll (Windows) - DomoticX Knowledge Center. https://domoticx.com/modbus-software-mbpoll-modpoll-windows/.\
+(4) undefined. https://www.modbustools.com.
+- - -
+<!--END-->
+
 <!--BEGIN-->
 ## C++. ModBus. Контрольная сумма. CRC-16 / ModBus
 ```C++
