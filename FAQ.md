@@ -14,6 +14,7 @@
   - [C++. ModBus. modpool.exe Адресация](#c-modbus-modpoolexe-адресация)
   - [C++. ModBus. Контрольная сумма. CRC-16 / ModBus](#c-modbus-контрольная-сумма-crc-16--modbus)
   - [C++. ModBus. Два регистра во float](#c-modbus-два-регистра-во-float)
+  - [C++. ModBus. 4 byte to float](#c-modbus-4-byte-to-float)
   - [C++. Список файлов/каталогов](#c-список-файловкаталогов)
   - [C++. TStringList разбиение текста по строкам с использованием разделителя. Игнорирование пробела.](#c-tstringlist-разбиение-текста-по-строкам-с-использованием-разделителя-игнорирование-пробела)
 - [C#](#c-1)
@@ -375,6 +376,30 @@ unsigned int TForm1::calculateModbusCRC16Checksum(const unsigned char* data, uns
 ```
 
 [Источник](http://signalrp.ru/catalog/vope-v1/Modbus_RTU_v1.4.pdf)
+- - - - -
+<!--END-->
+
+<!--BEGIN-->
+## C++. ModBus. 4 byte to float
+```C++
+  union { char c[4]; float f; } conv0;
+  //int buf[] = {0x00, 0x00, 0x41, 0xB5};//22,625 Порядок байт, как в ответе прибора
+  int buf[] = {0x80, 0x00, 0x43, 0x70};//240,5
+  float value0 =          ieee754 ( buf[2],      buf[3],      buf[0],    buf[1]);
+
+  int   valueInt =                 (buf[2]<<24)+(buf[3]<<16)+(buf[0]<<8)+buf[1];
+  float value1 = *(float*)&valueInt;
+
+  conv0.c[0] = buf[1];
+  conv0.c[1] = buf[0];
+  conv0.c[2] = buf[3];
+  conv0.c[3] = buf[2];
+  float value2 = conv0.f;
+```
+Статьи:
+1) https://www.programmersought.com/article/260510174437/
+2) https://stackoverflow.com/questions/7714908/modbus-tcp-answer-convert-to-a-float-c
+3) https://cplusplus.com/forum/beginner/94979/
 - - - - -
 <!--END-->
 
