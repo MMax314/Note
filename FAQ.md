@@ -18,6 +18,7 @@
   - [C++. Список файлов/каталогов](#c-список-файловкаталогов)
   - [C++. TStringList разбиение текста по строкам с использованием разделителя. Игнорирование пробела.](#c-tstringlist-разбиение-текста-по-строкам-с-использованием-разделителя-игнорирование-пробела)
 - [C#](#c-1)
+  - [C#. SQLite. Как сохранить БД из памяти в файл (на диск)](#c-sqlite-как-сохранить-бд-из-памяти-в-файл-на-диск)
   - [C#. Вывод SQL запросов в консоль DbContext.cs](#c-вывод-sql-запросов-в-консоль-dbcontextcs)
   - [C#. Разница между reader.GetOrdinal("id") и reader.GetOrdinal("id")](#c-разница-между-readergetordinalid-и-readergetordinalid)
   - [C#. Генерация GUID в Visual Studio. Hot keys](#c-генерация-guid-в-visual-studio-hot-keys)
@@ -460,9 +461,25 @@ row->DelimitedText = fileContent->Strings[i];
 <!--BEGIN_SECTION: C#-->
 # C#
 <!--BEGIN-->
+- - -
+<!--END-->
+
+<!--BEGIN-->
+## C#. SQLite. Как сохранить БД из памяти в файл (на диск)
+```C#
+using (var destination = new SqliteConnection("Data Source=file.sqlite"))
+{
+    destination.Open();
+    this.sqliteConnection.BackupDatabase(destination);
+}
+```
+- - -
+<!--END-->
+
+<!--BEGIN-->
 ## C#. Вывод SQL запросов в консоль DbContext.cs
 
-```cs
+```csна 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         => optionsBuilder.UseSqlite(Program.connectionString)
            .LogTo(Console.WriteLine);//Вывод SQL запросов в консоль
