@@ -58,6 +58,8 @@
   - [React. Npm](#react-npm)
   - [React. Ошибка при создании проекта React:](#react-ошибка-при-создании-проекта-react)
   - [React. Создание приложения](#react-создание-приложения)
+- [PostgreSQL](#postgresql)
+  - [PostgreSQL. Создание и конфигури БД](#postgresql-создание-и-конфигури-бд)
 
 <!-- ---------------------------------------- -->
 <!-- ---------------------------------------- -->
@@ -1677,3 +1679,80 @@ Node.js/Windows error: ENOENT, stat 'C:\Users\RT\AppData\Roaming\npm'
 <!--END-->
 
 <!--End_SECTION: React-->
+
+<!--Begin_SECTION: PostgreSQL-->
+# PostgreSQL
+## PostgreSQL. Создание и конфигури БД
+**Создание БД**
+```cmd
+echo off
+
+set PATH_BIN=C:\DataBase_00\pgsql\bin
+set PATH_DB_=C:\DataBase_00\DB_PostgreSQL_00
+set FILE_PASSWORD=!_(0)_Password.txt
+set FILE_LOG=!_(5)_Log_Create_DB.txt
+del "%FILE_LOG%"
+
+rem initdb.exe [ПАРАМЕТР]... [КАТАЛОГ]
+
+rem https://postgrespro.ru/docs/postgresql/15/app-initdb
+rem [-D, --pgdata=]КАТАЛОГ     расположение данных этого кластера БД
+rem --pgdata=каталог
+
+rem  -E, --encoding=КОДИРОВКА  кодировка по умолчанию для новых баз
+
+rem -U, --username=ИМЯ имя суперпользователя БД
+rem -W, --pwprompt     запросить пароль суперпользователя
+
+rem -A, --auth=МЕТОД метод проверки подлинности по умолчанию для локальных подключений
+
+rem --locale=ЛОКАЛЬ локаль по умолчанию для новых баз
+rem https://postgrespro.ru/docs/postgresql/15/locale
+
+rem -E 'UTF-8' --lc-collate='ru_RU.UTF-8' --lc-ctype='ru_RU.UTF-8'
+rem --locale='ru_RU.UTF-8' --encoding='UTF-8'
+
+"%PATH_BIN%\initdb.exe" --pgdata="%PATH_DB_%" --username=postgres --pwfile="%FILE_PASSWORD%" --locale=ru_RU.UTF-8 --encoding=UTF-8 --auth=trust >"%FILE_LOG%"
+```
+
+**Запуск БД**
+```cmd
+echo off
+
+set PATH_BIN=C:\DataBase_00\pgsql\bin
+set PATH_DB_=C:\DataBase_00\DB_PostgreSQL_00
+
+"%PATH_BIN%\pg_ctl.exe" start  -D "%PATH_DB_%" -l Log_PostgreSQL.txt
+```
+
+**Остановка БД**
+```cmd
+set PATH_BIN=C:\DataBase_00\pgsql\bin
+set PATH_DB_=C:\DataBase_00\DB_PostgreSQL_00
+
+"%PATH_BIN%\pg_ctl.exe" stop  -D "%PATH_DB_%" -l Log_PostgreSQL.txt
+```
+
+**Статус**
+```cmd
+set PATH_BIN=C:\DataBase_00\pgsql\bin
+set PATH_DB_=C:\DataBase_00\DB_PostgreSQL_00
+
+"%PATH_BIN%\pg_ctl.exe" status -D "%PATH_DB_%"
+```
+
+**Конфигурирование доступа к БД**
+1) **postgresql.conf**:
+```bush
+listen_addresses = '*' # what IP address(es) to listen on;
+```
+2) **pg_hba.conf**:
+* *trust* - без пароля
+* *password* - досутп по паролю
+```bash
+# TYPE  DATABASE        USER            ADDRESS                 METHOD
+host    all             all             127.0.0.1/32            password
+local   all             all                                     trust
+host   all              all             111.111.111.111/32        password
+```
+<!--End_SECTION: PostgreSQL-->
