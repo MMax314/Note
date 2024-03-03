@@ -10,6 +10,7 @@
   - [PowerShell. Разархивирование архивов из каталога](#powershell-разархивирование-архивов-из-каталога)
   - [Контрольная сумма MD5, SHA](#контрольная-сумма-md5-sha)
   - [SSD](#ssd)
+  - [GitHub Copilot. Проверка кода](#github-copilot-проверка-кода)
 - [C++](#c)
   - [C++. ModBus. modpool.exe Адресация](#c-modbus-modpoolexe-адресация)
   - [C++. ModBus. Контрольная сумма. CRC-16 / ModBus](#c-modbus-контрольная-сумма-crc-16--modbus)
@@ -33,6 +34,7 @@
   - [C#. Async - Await](#c-async---await)
   - [C#. SOLID](#c-solid)
   - [C#. Измерение времени работы Stopwatch()](#c-измерение-времени-работы-stopwatch)
+  - [C#. SeriLog. Ведение логов](#c-serilog-ведение-логов)
 - [SQLite](#sqlite)
   - [SQLite. Автоинкремент SQLite](#sqlite-автоинкремент-sqlite)
   - [SQLite. Если базе данных SQLite поле PK имеет тип INTEGER, то какой тип должно быть у свойства Id?](#sqlite-если-базе-данных-sqlite-поле-pk-имеет-тип-integer-то-какой-тип-должно-быть-у-свойства-id)
@@ -283,6 +285,19 @@ CertUtil.exe -hashfile "c:\work\!_text.txt" MD2 >>crc.txt
 <!--END-->
 
 <!--BEGIN-->
+## GitHub Copilot. Проверка кода
+"Можешь ли ты провести полный анализ и ревью моего кода, учитывая следующие критерии:
+1.	Соответствие стандартам кодирования и стилю кода.
+2.	Эффективность и производительность кода.
+3.	Обработка ошибок и исключений.
+4.	Читаемость и поддерживаемость кода.
+5.	Безопасность кода.
+6.	Корректность и полнота реализации функциональности.
+7.	Использование подходящих типов данных и структур.
+8.	Корректное использование библиотек и фреймворков.
+9.	Наличие и качество комментариев и документации.
+10.	Соответствие принципам SOLID и другим принципам объектно-ориентированного программирования."
+Это поможет мне понять, что вы хотите получить всесторонний анализ вашего кода, и я смогу предоставить вам обратную связь по каждому из этих критериев.
 - - -
 <!--END-->
 
@@ -1036,6 +1051,74 @@ static void InvalidChoice()
 <!--END-->
 
 <!--BEGIN-->
+## C#. SeriLog. Ведение логов
+**appSettings.json**
+
+**Вариант 1.** Простой
+```JSON
+{
+  "Serilog": {
+    "MinimumLevel": "Information",
+    "WriteTo": [
+      { "Name": "Console" },
+      {
+        "Name": "File",
+        "Args": {
+          "path": "log.txt",
+          "outputTemplate": "{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz} [{Level:u3}] {Message}{NewLine}{Exception}"
+        }
+      }
+    ]
+  }
+}
+```
+
+**Вариант 2:** Разные уровни сообщений для консоли и файлов
+```JSON
+  "Serilog": {
+    "WriteTo": [
+      {
+        "Name": "Console",
+        "Args": {
+          "restrictedToMinimumLevel": "Information"
+        }
+      },
+      {
+        "Name": "File",
+        "Args": {
+          "path": "log_info.txt",
+          "restrictedToMinimumLevel": "Information",
+          "outputTemplate": "{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz} [{Level:u3}] {Message}{NewLine}{Exception}"
+        }
+      },
+      {
+        "Name": "File",
+        "Args": {
+          "path": "log_error.txt",
+          "restrictedToMinimumLevel": "Error",
+          "outputTemplate": "{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz} [{Level:u3}] {Message}{NewLine}{Exception}"
+        }
+      }
+    ]
+  }
+```
+
+```C#
+// Загрузка конфигурации Serilog
+var configuration = new ConfigurationBuilder()
+    .SetBasePath(Directory.GetCurrentDirectory())
+    .AddJsonFile("appsettings.json")
+    .Build();
+
+Log.Logger = new LoggerConfiguration()
+    .ReadFrom.Configuration(configuration)
+    .CreateLogger();
+```
+- - -
+<!--END-->
+
+<!--BEGIN-->
+
 - - -
 <!--END-->
 
