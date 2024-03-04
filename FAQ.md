@@ -1060,6 +1060,18 @@ static void InvalidChoice()
 * **{NewLine}{Exception}** исключение, если оно есть
 
 **.Enrich.FromLogContext()** в Serilog позволяет добавлять дополнительные свойства в логируемые сообщения из *LogContext*.\
+```C#
+string logFileName = Path.Combine(Environment.CurrentDirectory, logDir, "log.txt");
+Log = new Serilog.LoggerConfiguration()
+    .Enrich.FromLogContext()
+    .WriteTo.File(logFileName,
+                  outputTemplate: "{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz} [{Level:u3}] {Message}{NewLine}{Exception}"
+                  )
+    .WriteTo.Console()
+    .CreateLogger();
+```
+
+
 **LogContext** - это статический класс, который позволяет создавать именованные и временные свойства, которые будут автоматически включены в все сообщения лога. Это может быть полезно, например, когда вы хотите включить некоторые свойства во все сообщения лога в рамках определенного блока кода.
 
 ```C#
