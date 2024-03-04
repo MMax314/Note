@@ -35,6 +35,7 @@
   - [C#. SOLID](#c-solid)
   - [C#. Измерение времени работы Stopwatch()](#c-измерение-времени-работы-stopwatch)
   - [C#. SeriLog. Ведение логов](#c-serilog-ведение-логов)
+- [C#. Файлы конфигурации приложения](#c-файлы-конфигурации-приложения)
 - [SQLite](#sqlite)
   - [SQLite. Автоинкремент SQLite](#sqlite-автоинкремент-sqlite)
   - [SQLite. Если базе данных SQLite поле PK имеет тип INTEGER, то какой тип должно быть у свойства Id?](#sqlite-если-базе-данных-sqlite-поле-pk-имеет-тип-integer-то-какой-тип-должно-быть-у-свойства-id)
@@ -1156,7 +1157,25 @@ Log.Logger = new LoggerConfiguration()
 <!--END-->
 
 <!--BEGIN-->
+# C#. Файлы конфигурации приложения
+В .NET Core вы можете использовать библиотеку, такую как **Microsoft.Extensions.Configuration.CommandLine**, чтобы легко обрабатывать именованные аргументы командной строки.
+```C#
+//myApp.exe --settings:FileName=appsettings.Production.json
+public static IHostBuilder CreateHostBuilder(string[] args) =>
+    Host.CreateDefaultBuilder(args)
+        .ConfigureAppConfiguration((hostingContext, config) =>
+        {
+            config.AddCommandLine(args);
+        })
+        .ConfigureWebHostDefaults(webBuilder =>
+        {
+            webBuilder.UseStartup<Startup>();
+        });
+```
+- - -
+<!--END-->
 
+<!--BEGIN-->
 - - -
 <!--END-->
 
