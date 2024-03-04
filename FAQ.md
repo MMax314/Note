@@ -1142,6 +1142,7 @@ using (LogContext.PushProperty("A", 1))
 
 ```C#
 // Загрузка конфигурации Serilog
+// Должен быть установлен пакет: Serilog.Settings.Configuration
 var configuration = new ConfigurationBuilder()
     .SetBasePath(Directory.GetCurrentDirectory())
     .AddJsonFile("appsettings.json")
