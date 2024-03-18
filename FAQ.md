@@ -36,6 +36,7 @@
   - [C#. Измерение времени работы Stopwatch()](#c-измерение-времени-работы-stopwatch)
   - [C#. SeriLog. Ведение логов](#c-serilog-ведение-логов)
 - [C#. Файлы конфигурации приложения](#c-файлы-конфигурации-приложения)
+  - [C#. OpenSSL](#c-openssl)
 - [SQLite](#sqlite)
   - [SQLite. Автоинкремент SQLite](#sqlite-автоинкремент-sqlite)
   - [SQLite. Если базе данных SQLite поле PK имеет тип INTEGER, то какой тип должно быть у свойства Id?](#sqlite-если-базе-данных-sqlite-поле-pk-имеет-тип-integer-то-какой-тип-должно-быть-у-свойства-id)
@@ -1172,6 +1173,21 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
             webBuilder.UseStartup<Startup>();
         });
 ```
+- - -
+<!--END-->
+
+<!--BEGIN-->
+## C#. OpenSSL
+https://www.openssl.org/source/
+
+Создание самоподписанного сертификата:
+
+С помощью OpenSSL:
+openssl req -newkey rsa:2048 -nodes -keyout localhost.key -x509 -days 365 -out localhost.crt
+
+С помощью .NET CLI:
+dotnet dev-certs https --trust
+
 - - -
 <!--END-->
 
