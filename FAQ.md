@@ -304,6 +304,21 @@ CertUtil.exe -hashfile "c:\work\!_text.txt" MD2 >>crc.txt
 <!--END-->
 
 <!--BEGIN-->
+## Обновление .Net
+* Получить все версии dotnet доступные к установке:
+```bash
+winget search Microsoft.DotNet.SDK
+```
+
+* Установить версию dotnet по ID
+```bash
+winget install --id Microsoft.DotNet.SDK.Preview
+```
+
+* Описание **winget**: https://learn.microsoft.com/en-us/dotnet/core/install/windows
+<!--END-->
+
+<!--BEGIN-->
 - - -
 <!--END-->
 
